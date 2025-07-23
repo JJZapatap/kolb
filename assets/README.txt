@@ -1,0 +1,1 @@
+Coloca aquí tus imágenes reales. Ej: banner-home.png, matematicas.png, etc.
