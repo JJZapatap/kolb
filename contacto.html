@@ -1,35 +1,71 @@
-<!DOCTYPE html><html lang="es"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contacto</title>
-<link rel="stylesheet" href="css/style.css"/></head><body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
 <header>
   <div class="container navbar">
     <a href="index.html" class="logo">Kolb‑UCC</a>
     <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
-    <nav><ul id="nav-menu"><li><a href="index.html">Inicio</a></li>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="index.html">Inicio</a></li>
         <li><a href="modelo-kolb.html">Modelo Kolb</a></li>
         <li><a href="estrategias.html">Estrategias por tema</a></li>
         <li><a href="recursos.html">Recursos Docentes</a></li>
         <li><a href="evidencias.html">Evidencias</a></li>
         <li><a class="active" href="contacto.html">Contacto</a></li>
-        </ul></nav>
+      </ul>
+    </nav>
   </div>
 </header>
+
+<!-- Banner principal -->
 <section class="banner">
   <div class="text">
     <h1>CONTACTO</h1>
-    <p>¿Preguntas o comentarios? Escríbenos.</p>
+    <p>¿Preguntas o comentarios? Escríbenos o contacta directamente a nuestro equipo.</p>
   </div>
   <div class="circles">
-    <div class="bubble"><img src="assets/estudiante.png" alt="Imagen 1"></div>
-    <div class="bubble"><img src="assets/math.png" alt="Imagen 2"></div>
+    <div class="bubble"><img src="assets/estudiante.png" alt="Estudiante"></div>
+    <div class="bubble"><img src="assets/math.png" alt="Matemáticas"></div>
   </div>
 </section>
+
 <main>
-<section class="section container">
-  <h2>Formulario</h2>
-  <div class="ratio"><iframe src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe></div>
-</section>
+  <!-- Tarjetas de contacto -->
+  <section class="section container">
+    <h2>Nuestro equipo</h2>
+    <div class="card-grid">
+      <!-- Johanna -->
+      <div class="card" style="text-align:center;">
+        <img src="assets/contact.png" class="icon" alt="Foto Johanna" style="width:96px;height:96px;border-radius:50%;margin:0 auto 1rem auto;object-fit:cover;" onerror="this.src='assets/avatar-placeholder.png'" />
+        <h3>JOHANNA MARINA<br>VARGAS COLLANTE</h3>
+        <p><a href="mailto:johanna.vargas@ejemplo.com">johanna.vargas@ucc.edu.co</a></p>
+      </div>
+      <!-- Yessica -->
+      <div class="card" style="text-align:center;">
+        <img src="assets/contact.png" class="icon" alt="Foto Yessica" style="width:96px;height:96px;border-radius:50%;margin:0 auto 1rem auto;object-fit:cover;" onerror="this.src='assets/avatar-placeholder.png'" />
+        <h3>YESSICA LORENA<br>GÓNGORA CASILIMAS</h3>
+        <p><a href="mailto:yessica.gongora@ejemplo.com">yessica.gongorac@ucc.edu.co</a></p>
+      </div>
+      <!-- Viviana -->
+      <div class="card" style="text-align:center;">
+        <img src="assets/contact.png" class="icon" alt="Foto Viviana" style="width:96px;height:96px;border-radius:50%;margin:0 auto 1rem auto;object-fit:cover;" onerror="this.src='assets/avatar-placeholder.png'" />
+        <h3>VIVIANA<br>SEPÚLVEDA GALVEZ</h3>
+        <p><a href="mailto:viviana.sepulveda@ejemplo.com">viviana.sepulveda@ucc.edu.co</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario embed -->
 </main>
+
 <footer>© 2025 Universidad Cooperativa de Colombia – Ingeniería Civil</footer>
-<script src="js/main.js"></script></body></html>
+<script src="js/main.js"></script>
+</body>
+</html>
