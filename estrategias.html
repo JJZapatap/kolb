@@ -1,40 +1,545 @@
-<!DOCTYPE html><html lang="es"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Estrategias por tema</title>
-<link rel="stylesheet" href="css/style.css"/></head><body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estrategias por tema</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Estilos locales para Tabs + mejoras suaves -->
+  <style>
+    .tabs{display:flex;flex-wrap:wrap;gap:.6rem;margin:.5rem 0 1.2rem}
+    .tab-btn{border:2px solid #3498db;background:#fff;color:#3498db;padding:.55rem .9rem;border-radius:999px;font-weight:700;cursor:pointer}
+    .tab-btn[aria-selected="true"], .tab-btn:hover{background:#3498db;color:#fff}
+    .tab-pane{display:none;animation:fade .25s ease}
+    .tab-pane.active{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+    /* bloques internos */
+    .plan-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem}
+    .plan-col{grid-column:span 12;background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:1rem 1rem 1rem}
+    @media(min-width:900px){.plan-col{grid-column:span 6}}
+
+    .plan-col h3{margin:.25rem 0 .25rem;color:var(--ucc-green-dark)}
+    .plan-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin:.25rem 0 .6rem}
+    .plan-meta .badge{margin-left:0}
+    .plan-block{margin:.6rem 0}
+    .plan-block h4{margin:0 0 .3rem;color:var(--ucc-green-dark);font-size:.95rem;text-transform:uppercase;letter-spacing:.02em}
+    .plan-block ul{margin:.25rem 0 0 1.1rem}
+    .plan-actions{display:flex;gap:.5rem;align-items:center;margin-top:.7rem;flex-wrap:wrap}
+    .copy-plan{border:1px solid #d0d7de;background:#fff;border-radius:8px;padding:.45rem .7rem;cursor:pointer;font-weight:600}
+    .copy-plan:hover{background:#f6f8fa}
+  </style>
+</head>
+<body>
 <header>
   <div class="container navbar">
-    <a href="index.html" class="logo">Kolb‑UCC</a>
+    <a href="index.html" class="logo">
+      <img src="assets/Logo_UCC.svg" alt="Universidad Cooperativa de Colombia" onerror="this.onerror=null;this.src='assets/ucc-logo.png';">
+    </a>
     <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
-    <nav><ul id="nav-menu"><li><a href="index.html">Inicio</a></li>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="index.html">Inicio</a></li>
         <li><a href="modelo-kolb.html">Modelo Kolb</a></li>
         <li><a class="active" href="estrategias.html">Estrategias por tema</a></li>
         <li><a href="recursos.html">Recursos Docentes</a></li>
         <li><a href="evidencias.html">Evidencias</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        </ul></nav>
+      </ul>
+    </nav>
   </div>
 </header>
+
 <section class="banner">
   <div class="text">
     <h1>ESTRATEGIAS POR TEMA</h1>
-    <p>Selecciona un tema y luego el estilo de aprendizaje</p>
+    <p>Aplicación del Modelo de Kolb a Polinomios, Expresiones Algebraicas, Factorización y Teoría de Conjuntos</p>
   </div>
   <div class="circles">
-    <div class="bubble"><img src="assets/estudiante.png" alt="Imagen 1"></div>
-    <div class="bubble"><img src="assets/math.png" alt="Imagen 2"></div>
+    <div class="bubble"><img src="assets/estudiante.png" alt="Estudiante"></div>
+    <div class="bubble"><img src="assets/math.png" alt="Símbolos matemáticos"></div>
   </div>
 </section>
+
 <main>
-<section class="section container">
-  <h2>Temas</h2>
-  <div class="card-grid">
-    <div class="card"><h3>Teoría de Conjuntos</h3><p>Operaciones y diagramas de Venn.</p><a class="btn" href="temas/teoria-conjuntos.html">Explorar</a></div>
-    <div class="card"><h3>Polinomios</h3><p>Operaciones con polinomios en contexto de ingeniería.</p><a class="btn" href="temas/polinomios.html">Explorar</a></div>
-    <div class="card"><h3>Expresiones Algebraicas</h3><p>Simplificación y manipulación de expresiones.</p><a class="btn" href="temas/expresiones.html">Explorar</a></div>
-    <div class="card"><h3>Factorización</h3><p>Métodos de factorización útiles en cálculos estructurales.</p><a class="btn" href="temas/factorizacion.html">Explorar</a></div>
-  </div>
-</section>
+  <section class="section container">
+    <h2>Selecciona un tema</h2>
+    <div class="tabs" role="tablist">
+      <button class="tab-btn" role="tab" aria-selected="true" aria-controls="pane-polinomios" id="tab-polinomios">Polinomios</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-expresiones" id="tab-expresiones">Expresiones algebraicas</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-factorizacion" id="tab-factorizacion">Factorización</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-conjuntos" id="tab-conjuntos">Teoría de conjuntos</button>
+    </div>
+
+    <!-- ===================== POLINOMIOS ===================== -->
+    <div class="tab-pane active" id="pane-polinomios" role="tabpanel" aria-labelledby="tab-polinomios">
+      <div class="plan-grid">
+        <!-- Divergente -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Divergente</span><span class="badge">Exploración creativa</span></div>
+          <h3>Lectura visual de polinomios en contexto</h3>
+          <div class="plan-block">
+            <h4>Objetivo</h4>
+            <p>Reconocer términos, grado y comportamiento cualitativo de polinomios vinculados a esfuerzos y deformaciones.</p>
+          </div>
+          <div class="plan-block">
+            <h4>Actividad (paso a paso)</h4>
+            <ul>
+              <li>Presenta 3 gráficos (sketch) de polinomios y pregunta qué fenómeno estructural podrían representar.</li>
+              <li>En Jamboard/Canva, los equipos anotan hipótesis y analogías (curvatura, puntos de inflexión).</li>
+              <li>Socializan ideas y construyen un mapa conceptual de vocabulario clave.</li>
+            </ul>
+          </div>
+          <div class="plan-block">
+            <h4>Evidencia y evaluación</h4>
+            <p>Mapa conceptual + breve audio/reflexión. Criterios: pertinencia, conexiones y claridad (rúbrica simple de 4 niveles).</p>
+          </div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-polinomios">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-polinomios">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-pol-div">Copiar estrategia</button>
+          </div>
+          <div id="copy-pol-div" style="display:none">
+            Objetivo: Reconocer términos, grado y comportamiento cualitativo de polinomios en contexto.
+            Pasos: 1) 3 gráficos; 2) Hipótesis en Jamboard; 3) Socialización y mapa conceptual.
+            Evidencia: Mapa conceptual + audio; Rúbrica: pertinencia, conexiones, claridad.
+          </div>
+        </article>
+
+        <!-- Asimilador -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Asimilador</span><span class="badge">Modelo teórico</span></div>
+          <h3>Esquema formal de polinomios</h3>
+          <div class="plan-block">
+            <h4>Objetivo</h4>
+            <p>Distinguir estructura, operaciones y propiedades (cero del polinomio, multiplicidad, comportamiento extremo).</p>
+          </div>
+          <div class="plan-block">
+            <h4>Actividad</h4>
+            <ul>
+              <li>Lectura guiada + cuadro resumen (definiciones, ejemplos, contraejemplos).</li>
+              <li>Mini-demostraciones: relación entre raíces y factorización.</li>
+              <li>Ejercicios tipo: clasificar, ordenar, identificar grado/coeficientes.</li>
+            </ul>
+          </div>
+          <div class="plan-block">
+            <h4>Evidencia</h4>
+            <p>Ficha de síntesis y 6 ejercicios resueltos. Criterios: precisión, justificación, organización.</p>
+          </div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-polinomios">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-polinomios">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-pol-asi">Copiar estrategia</button>
+          </div>
+          <div id="copy-pol-asi" style="display:none">
+            Objetivo: Distinguir estructura y propiedades de polinomios.
+            Actividad: Lectura guiada + resumen; mini-demostraciones; ejercicios de clasificación.
+            Evidencia: Ficha + 6 ejercicios; Rúbrica: precisión, justificación, organización.
+          </div>
+        </article>
+
+        <!-- Convergente -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Convergente</span><span class="badge">ABP</span></div>
+          <h3>ABP: dimensionamiento preliminar con raíces</h3>
+          <div class="plan-block">
+            <h4>Objetivo</h4>
+            <p>Aplicar raíces y factorización de polinomios para tomar decisiones en un caso simple de diseño.</p>
+          </div>
+          <div class="plan-block">
+            <h4>Actividad</h4>
+            <ul>
+              <li>Presenta un caso (p. ej., deflexión aproximada) con datos simplificados.</li>
+              <li>Formula el polinomio y calcula raíces relevantes; analiza sensibilidad.</li>
+              <li>Redacta recomendación técnica con supuestos y límites.</li>
+            </ul>
+          </div>
+          <div class="plan-block">
+            <h4>Evidencia</h4>
+            <p>Informe breve. Criterios: corrección matemática, decisión justificada, comunicación.</p>
+          </div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-polinomios">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-polinomios">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-pol-conv">Copiar estrategia</button>
+          </div>
+          <div id="copy-pol-conv" style="display:none">
+            Objetivo: Aplicar raíces/factorización en decisión de diseño.
+            Actividad: Caso; formular polinomio; calcular raíces; sensibilidad; recomendación.
+            Evidencia: Informe; Criterios: corrección, justificación, comunicación.
+          </div>
+        </article>
+
+        <!-- Acomodador -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Acomodador</span><span class="badge">Aprender haciendo</span></div>
+          <h3>Mini-lab: ajuste polinómico con datos</h3>
+          <div class="plan-block">
+            <h4>Objetivo</h4>
+            <p>Recolectar datos (simulados o reales) y ajustar un polinomio para interpretar un fenómeno sencillo.</p>
+          </div>
+          <div class="plan-block">
+            <h4>Actividad</h4>
+            <ul>
+              <li>Medición rápida/tabla simulada (p. ej., asentamiento vs. carga).</li>
+              <li>Ajuste polinómico (hoja de cálculo/GeoGebra) y validación básica.</li>
+              <li>Póster con hallazgos y mejora propuesta.</li>
+            </ul>
+          </div>
+          <div class="plan-block">
+            <h4>Evidencia</h4>
+            <p>Póster y archivo con cálculos. Criterios: calidad de datos, ajuste, interpretación.</p>
+          </div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-polinomios">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-polinomios">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-pol-acom">Copiar estrategia</button>
+          </div>
+          <div id="copy-pol-acom" style="display:none">
+            Objetivo: Ajustar polinomio a datos.
+            Actividad: Recolectar/simular; ajustar; validar; presentar.
+            Evidencia: Póster + cálculos; Criterios: datos, ajuste, interpretación.
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===================== EXPRESIONES ALGEBRAICAS ===================== -->
+    <div class="tab-pane" id="pane-expresiones" role="tabpanel" aria-labelledby="tab-expresiones">
+      <div class="plan-grid">
+        <!-- Divergente -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Divergente</span><span class="badge">Visual-colaborativo</span></div>
+          <h3>Storyboarding de operaciones básicas</h3>
+          <div class="plan-block">
+            <h4>Objetivo</h4>
+            <p>Representar suma, resta, multiplicación y división de expresiones desde un guion gráfico aplicado a caudal/presión.</p>
+          </div>
+          <div class="plan-block">
+            <h4>Actividad</h4>
+            <ul>
+              <li>Equipos crean viñetas con expresiones y su sentido físico.</li>
+              <li>Comparan dos formas equivalentes y justifican equivalencia.</li>
+              <li>Galería y comentarios cruzados.</li>
+            </ul>
+          </div>
+          <div class="plan-block">
+            <h4>Evidencia</h4>
+            <p>Guion gráfico anotado. Criterios: corrección, creatividad, conexión con contexto.</p>
+          </div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-expresiones">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-expresiones">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-exp-div">Copiar estrategia</button>
+          </div>
+          <div id="copy-exp-div" style="display:none">Objetivo: Representar operaciones en storyboard. Pasos: crear viñetas; equivalencias; galería. Evidencia: guion; Criterios: corrección, creatividad, contexto.</div>
+        </article>
+
+        <!-- Asimilador -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Asimilador</span><span class="badge">Secuencial</span></div>
+          <h3>Algoritmos de simplificación y equivalencia</h3>
+          <div class="plan-block">
+            <h4>Objetivo</h4>
+            <p>Aplicar reglas de álgebra para simplificar y verificar equivalencias con unidades mixtas.</p>
+          </div>
+          <div class="plan-block">
+            <h4>Actividad</h4>
+            <ul>
+              <li>Tabla de reglas (propiedades, identidades).</li>
+              <li>Lista graduada de ejercicios con solución modelo.</li>
+              <li>Chequeo por pares con criterios.</li>
+            </ul>
+          </div>
+          <div class="plan-block">
+            <h4>Evidencia</h4>
+            <p>Hoja de ejercicios. Criterios: pasos correctos, unidades consistentes, orden.</p>
+          </div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-expresiones">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-expresiones">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-exp-asi">Copiar estrategia</button>
+          </div>
+          <div id="copy-exp-asi" style="display:none">Objetivo: Simplificar y verificar equivalencias. Actividad: reglas; ejercicios graduados; revisión por pares. Evidencia: hoja; Criterios: pasos, unidades, orden.</div>
+        </article>
+
+        <!-- Convergente -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Convergente</span><span class="badge">Resolución</span></div>
+          <h3>Problemas con restricciones de unidades</h3>
+          <div class="plan-block">
+            <h4>Objetivo</h4>
+            <p>Plantear y resolver situaciones de caudal/energía donde la consistencia de unidades determina la solución.</p>
+          </div>
+          <div class="plan-block">
+            <h4>Actividad</h4>
+            <ul>
+              <li>Problemas con datos en sistemas mixtos (SI/Imperial).</li>
+              <li>Chequeo dimensional en cada paso.</li>
+              <li>Conclusión técnica con supuestos.</li>
+            </ul>
+          </div>
+          <div class="plan-block">
+            <h4>Evidencia</h4>
+            <p>Solución argumentada. Criterios: consistencia dimensional, claridad, pertinencia.</p>
+          </div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-expresiones">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-expresiones">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-exp-conv">Copiar estrategia</button>
+          </div>
+          <div id="copy-exp-conv" style="display:none">Objetivo: Resolver con unidades mixtas. Actividad: problemas; chequeo dimensional; conclusión. Evidencia: solución; Criterios: consistencia, claridad, pertinencia.</div>
+        </article>
+
+        <!-- Acomodador -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Acomodador</span><span class="badge">Hands-on</span></div>
+          <h3>Laboratorio de equivalencias con sensores/hoja de cálculo</h3>
+          <div class="plan-block">
+            <h4>Objetivo</h4>
+            <p>Recoger lecturas (simuladas o reales) y formalizar expresiones que describan el fenómeno.</p>
+          </div>
+          <div class="plan-block">
+            <h4>Actividad</h4>
+            <ul>
+              <li>Generación de datos (sensor/planilla).</li>
+              <li>Formulación de expresiones; simplificación y validación.</li>
+              <li>Mini informe con hallazgos y límites.</li>
+            </ul>
+          </div>
+          <div class="plan-block">
+            <h4>Evidencia</h4>
+            <p>Informe + archivo de datos. Criterios: calidad de datos, coherencia, reflexión.</p>
+          </div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-expresiones">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-expresiones">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-exp-acom">Copiar estrategia</button>
+          </div>
+          <div id="copy-exp-acom" style="display:none">Objetivo: Formular y validar expresiones. Actividad: datos; simplificar; validar; informar. Evidencia: informe + datos; Criterios: calidad, coherencia, reflexión.</div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===================== FACTORIZACIÓN ===================== -->
+    <div class="tab-pane" id="pane-factorizacion" role="tabpanel" aria-labelledby="tab-factorizacion">
+      <div class="plan-grid">
+        <!-- Divergente -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Divergente</span><span class="badge">Descubrimiento guiado</span></div>
+          <h3>Patrones visuales de factorización</h3>
+          <div class="plan-block">
+            <h4>Objetivo</h4>
+            <p>Identificar patrones (factor común, trinomio, diferencia de cuadrados) con representaciones y contraejemplos.</p>
+          </div>
+          <div class="plan-block">
+            <h4>Actividad</h4>
+            <ul>
+              <li>Galería de expresiones para clasificar (sí/no/indeciso).</li>
+              <li>Analogías con áreas/rectángulos/losas.</li>
+              <li>Socialización de criterios y dudas frecuentes.</li>
+            </ul>
+          </div>
+          <div class="plan-block"><h4>Evidencia</h4><p>Cuadro de clasificación + explicación breve. Criterios: criterio correcto, ejemplos, contraejemplos.</p></div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-factorizacion">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-factorizacion">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-fac-div">Copiar estrategia</button>
+          </div>
+          <div id="copy-fac-div" style="display:none">Objetivo: Reconocer patrones de factorización. Actividad: clasificar; analogías; socializar. Evidencia: cuadro + explicación; Criterios: criterio, ejemplos.</div>
+        </article>
+
+        <!-- Asimilador -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Asimilador</span><span class="badge">Procedimental</span></div>
+          <h3>Ruta de métodos de factorización</h3>
+          <div class="plan-block"><h4>Objetivo</h4><p>Seleccionar y aplicar el método adecuado (factor común, agrupación, trinomio, Ruffini).</p></div>
+          <div class="plan-block"><h4>Actividad</h4>
+            <ul>
+              <li>Diagrama de flujo de decisión.</li>
+              <li>Ejercicios graduados con justificación del método.</li>
+              <li>Checklist de errores típicos.</li>
+            </ul>
+          </div>
+          <div class="plan-block"><h4>Evidencia</h4><p>Cuestionario de 10 ítems. Criterios: selección correcta, procedimiento, verificación.</p></div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-factorizacion">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-factorizacion">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-fac-asi">Copiar estrategia</button>
+          </div>
+          <div id="copy-fac-asi" style="display:none">Objetivo: Aplicar método adecuado. Actividad: flujo; ejercicios; checklist. Evidencia: cuestionario; Criterios: selección, procedimiento, verificación.</div>
+        </article>
+
+        <!-- Convergente -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Convergente</span><span class="badge">Optimización</span></div>
+          <h3>Optimizar costos usando factorización</h3>
+          <div class="plan-block"><h4>Objetivo</h4><p>Modelar costo/área con polinomios y simplificar vía factorización para hallar condiciones óptimas.</p></div>
+          <div class="plan-block"><h4>Actividad</h4>
+            <ul>
+              <li>Planteo de polinomio de costos.</li>
+              <li>Factorización y análisis de raíces factibles.</li>
+              <li>Conclusión y defensa de la decisión.</li>
+            </ul>
+          </div>
+          <div class="plan-block"><h4>Evidencia</h4><p>Memo técnico. Criterios: modelo válido, simplificación correcta, decisión.</p></div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-factorizacion">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-factorizacion">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-fac-conv">Copiar estrategia</button>
+          </div>
+          <div id="copy-fac-conv" style="display:none">Objetivo: Optimizar costo con factorización. Actividad: modelo; factorizar; analizar; decidir. Evidencia: memo; Criterios: modelo, simplificación, decisión.</div>
+        </article>
+
+        <!-- Acomodador -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Acomodador</span><span class="badge">Prototipo</span></div>
+          <h3>Prototipo de área compuesta</h3>
+          <div class="plan-block"><h4>Objetivo</h4><p>Construir (cartón/impresión) áreas compuestas para visualizar productos notables y su factorización.</p></div>
+          <div class="plan-block"><h4>Actividad</h4>
+            <ul>
+              <li>Plantillas de rectángulos/cuadrados (a, b, a±b).</li>
+              <li>Composición/descomposición y registro algebraico.</li>
+              <li>Fotos y explicación oral breve.</li>
+            </ul>
+          </div>
+          <div class="plan-block"><h4>Evidencia</h4><p>Serie fotográfica + hoja de cálculo. Criterios: correspondencia geométrica-algebraica, claridad.</p></div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-factorizacion">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-factorizacion">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-fac-acom">Copiar estrategia</button>
+          </div>
+          <div id="copy-fac-acom" style="display:none">Objetivo: Visualizar productos notables. Actividad: plantillas; componer/descomponer; documentar. Evidencia: fotos + hoja; Criterios: correspondencia, claridad.</div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===================== TEORÍA DE CONJUNTOS ===================== -->
+    <div class="tab-pane" id="pane-conjuntos" role="tabpanel" aria-labelledby="tab-conjuntos">
+      <div class="plan-grid">
+        <!-- Divergente -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Divergente</span><span class="badge">Venn creativo</span></div>
+          <h3>Clasificación de materiales (diagrama de Venn)</h3>
+          <div class="plan-block"><h4>Objetivo</h4><p>Clasificar materiales (resistencia, densidad, costo) y explorar intersecciones y complementos.</p></div>
+          <div class="plan-block"><h4>Actividad</h4>
+            <ul>
+              <li>Plantilla Venn (Jamboard) y set de tarjetas de materiales.</li>
+              <li>Discusión sobre pertenencia, límites y supuestos.</li>
+              <li>Registro de conjuntos resultantes.</li>
+            </ul>
+          </div>
+          <div class="plan-block"><h4>Evidencia</h4><p>Captura del Venn + reflexión. Criterios: clasificación coherente, justificación.</p></div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-conjuntos">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-conjuntos">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-conj-div">Copiar estrategia</button>
+          </div>
+          <div id="copy-conj-div" style="display:none">Objetivo: Clasificar con Venn. Actividad: plantilla; discusión; registro. Evidencia: captura + reflexión; Criterios: coherencia, justificación.</div>
+        </article>
+
+        <!-- Asimilador -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Asimilador</span><span class="badge">Formalización</span></div>
+          <h3>Notación y leyes de conjuntos</h3>
+          <div class="plan-block"><h4>Objetivo</h4><p>Dominar notación, diagramas y leyes (De Morgan, distributivas) en contextos de clasificación.</p></div>
+          <div class="plan-block"><h4>Actividad</h4>
+            <ul>
+              <li>Ficha de notación + ejemplos.</li>
+              <li>Demostraciones visuales de leyes en Venn.</li>
+              <li>Ejercicios de traducción símbolo ↔ lenguaje natural.</li>
+            </ul>
+          </div>
+          <div class="plan-block"><h4>Evidencia</h4><p>Cuestionario corto + problemas de aplicación. Criterios: precisión simbólica, coherencia.</p></div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-conjuntos">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-conjuntos">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-conj-asi">Copiar estrategia</button>
+          </div>
+          <div id="copy-conj-asi" style="display:none">Objetivo: Notación y leyes. Actividad: ficha; demostraciones; ejercicios. Evidencia: cuestionario; Criterios: precisión, coherencia.</div>
+        </article>
+
+        <!-- Convergente -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Convergente</span><span class="badge">Consulta de datos</span></div>
+          <h3>Filtrado de registros con conjuntos</h3>
+          <div class="plan-block"><h4>Objetivo</h4><p>Aplicar operaciones de conjuntos como filtros en tablas (p. ej., ensayos de hormigón).</p></div>
+          <div class="plan-block"><h4>Actividad</h4>
+            <ul>
+              <li>Definir conjuntos por criterios (f'c, edad, revenimiento).</li>
+              <li>Unión/intersección/diferencia como filtros sucesivos.</li>
+              <li>Conclusión: subconjunto óptimo y justificación.</li>
+            </ul>
+          </div>
+          <div class="plan-block"><h4>Evidencia</h4><p>Hoja con filtros aplicados. Criterios: criterios correctos, trazabilidad, conclusión.</p></div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-conjuntos">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-conjuntos">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-conj-conv">Copiar estrategia</button>
+          </div>
+          <div id="copy-conj-conv" style="display:none">Objetivo: Filtrar con conjuntos. Actividad: criterios; operar conjuntos; concluir. Evidencia: hoja con filtros; Criterios: criterios, trazabilidad, conclusión.</div>
+        </article>
+
+        <!-- Acomodador -->
+        <article class="plan-col">
+          <div class="plan-meta"><span class="badge">Acomodador</span><span class="badge">Proyecto</span></div>
+          <h3>Proyecto mini: catálogo de materiales por conjuntos</h3>
+          <div class="plan-block"><h4>Objetivo</h4><p>Construir un catálogo visual y formal de materiales etiquetados por pertenencia a conjuntos.</p></div>
+          <div class="plan-block"><h4>Actividad</h4>
+            <ul>
+              <li>Definir universo y criterios.</li>
+              <li>Etiquetar y justificar pertenencias.</li>
+              <li>Presentación corta con decisiones de diseño.</li>
+            </ul>
+          </div>
+          <div class="plan-block"><h4>Evidencia</h4><p>Catálogo + presentación. Criterios: precisión, utilidad, comunicación.</p></div>
+          <div class="plan-actions">
+            <a class="btn" href="recursos.html#rubricas-conjuntos">Ver rúbrica del tema</a>
+            <a class="btn outline" href="recursos.html#prompts-conjuntos">Ver prompts del tema</a>
+            <button class="copy-plan" data-copy="#copy-conj-acom">Copiar estrategia</button>
+          </div>
+          <div id="copy-conj-acom" style="display:none">Objetivo: Catálogo por conjuntos. Actividad: universo; etiquetas; presentación. Evidencia: catálogo + pitch; Criterios: precisión, utilidad, comunicación.</div>
+        </article>
+      </div>
+    </div>
+
+  </section>
 </main>
-<footer>© 2025 Universidad Cooperativa de Colombia – Ingeniería Civil</footer>
-<script src="js/main.js"></script></body></html>
+
+<footer>© 2025 Universidad Cooperativa de Colombia – Ingeniería Civil • Vigilada Mineducación</footer>
+
+<!-- JS Tabs + Copiar plan -->
+<script>
+(function(){
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panes = document.querySelectorAll('.tab-pane');
+  function activate(id){
+    tabs.forEach(b=>b.setAttribute('aria-selected', b.id===`tab-${id}`));
+    panes.forEach(p=>p.classList.toggle('active', p.id===`pane-${id}`));
+  }
+  tabs.forEach(btn=>btn.addEventListener('click',()=>activate(btn.id.replace('tab-',''))));
+
+  // Deep link por hash
+  const hash = location.hash.replace('#','');
+  if(hash && document.getElementById(`pane-${hash}`)) activate(hash);
+
+  // Copiar plan
+  document.querySelectorAll('.copy-plan').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const target = btn.getAttribute('data-copy');
+      const el = document.querySelector(target);
+      if(!el) return;
+      const text = el.textContent.replace(/\s+/g,' ').trim();
+      navigator.clipboard.writeText(text).then(()=>{
+        const old = btn.textContent; btn.textContent='¡Copiado!';
+        setTimeout(()=>btn.textContent=old,1200);
+      });
+    });
+  });
+})();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
+

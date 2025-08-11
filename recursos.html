@@ -4,13 +4,77 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recursos Docentes</title>
-  <!-- Mantiene tu hoja de estilos principal -->
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ===== Botones de tarjetas: ancho completo y tamaño uniforme ===== */
+    .resource-links{
+      display:grid;
+      grid-template-columns:1fr;     /* siempre en una columna */
+      gap:.75rem;
+      margin-top:.9rem;
+    }
+    .resource-links .btn,
+    .resource-links .btn.outline{
+      width:100%;
+      display:block;
+      text-align:center;
+      padding:.9rem 1rem;            /* mismo alto visual */
+      border-radius:10px;
+    }
+
+    /* ===== Carrusel de RÚBRICAS ===== */
+    .rubric-carousel{position:relative;background:var(--white);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden;padding:1rem;margin-top:.5rem}
+    .rubric-track{display:flex;transition:transform .35s var(--transition);will-change:transform}
+    .rubric-slide{min-width:100%;padding:1rem}
+    .rubric-card{background:linear-gradient(180deg,#fff,#f9fbfd);border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:1rem;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+    .rubric-card h3{margin:.2rem 0 .25rem;color:var(--ucc-fundadores);font-size:1.15rem}
+    .rubric-card p.lead{margin:0 0 .75rem;color:var(--mid-gray)}
+    .rc-controls{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem}
+    .rc-arrows{display:flex;gap:.5rem}
+    .rc-btn{background:#3498db;color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.2rem;cursor:pointer;transition:var(--transition)}
+    .rc-btn:hover{background:#2980b9}
+    .rc-dots{display:flex;gap:.35rem}
+    .rc-dot{width:10px;height:10px;border-radius:50%;background:#cfd8dc;cursor:pointer;border:none}
+    .rc-dot.active{background:#3498db}
+    .rubric-copy{border:1px solid #d0d7de;background:#fff;border-radius:8px;padding:.45rem .7rem;cursor:pointer;font-weight:600}
+    .rubric-copy:hover{background:#f6f8fa}
+    .table-wrap{overflow-x:auto}
+    .rubric-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+
+    /* ===== Carrusel de PROMPTS ===== */
+    .prompt-carousel{position:relative;background:var(--white);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden;padding:1rem}
+    .prompt-track{display:flex;transition:transform .35s var(--transition);will-change:transform}
+    .prompt-slide{min-width:100%;padding:1rem}
+    .prompt-card{background:linear-gradient(180deg,#fff,#f9fbfd);border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:1.25rem 1rem;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+    .prompt-card h3{margin:.2rem 0 .25rem;color:var(--ucc-fundadores);font-size:1.15rem}
+    .prompt-card p.lead{margin:0 0 .75rem;color:var(--mid-gray)}
+    .prompt-meta{display:flex;gap:.5rem;align-items:center;margin:.25rem 0 1rem}
+    .prompt-badge{display:inline-block;background:#e7f3e2;color:var(--ucc-green-dark);padding:.2rem .5rem;border-radius:6px;font-size:.75rem;font-weight:700}
+    .prompt-list{margin:.5rem 0 0 1.1rem;color:var(--dark-gray)}
+    .prompt-list li{margin:.4rem 0}
+    .pc-controls{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem}
+    .pc-arrows{display:flex;gap:.5rem}
+    .pc-btn{background:#3498db;color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.2rem;cursor:pointer;transition:var(--transition)}
+    .pc-btn:hover{background:#2980b9}
+    .pc-dots{display:flex;gap:.35rem}
+    .pc-dot{width:10px;height:10px;border-radius:50%;background:#cfd8dc;cursor:pointer;border:none}
+    .pc-dot.active{background:#3498db}
+    .copy-wrap{display:flex;gap:.5rem;align-items:center;margin-top:.75rem}
+    .copy-btn{border:1px solid #d0d7de;background:#fff;border-radius:8px;padding:.45rem .7rem;cursor:pointer;font-weight:600}
+    .copy-btn:hover{background:#f6f8fa}
+
+    /* anclajes suaves */
+    #polinomios,#expresiones,#factorizacion,#conjuntos{scroll-margin-top:84px}
+    .card:target{box-shadow:0 0 0 3px var(--ucc-green), 0 10px 28px rgba(0,0,0,.12)}
+  </style>
 </head>
 <body>
 <header>
   <div class="container navbar">
-    <a href="index.html" class="logo">Kolb‑UCC</a>
+    <a href="index.html" class="logo">
+      <img src="assets/Logo_UCC.svg" alt="Universidad Cooperativa de Colombia" onerror="this.onerror=null;this.src='assets/ucc-logo.png';" style="height:28px;vertical-align:middle;margin-right:.5rem;">
+
+    </a>
     <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
     <nav>
       <ul id="nav-menu">
@@ -37,40 +101,387 @@
 </section>
 
 <main>
-  <!-- ===== ENLACES RÁPIDOS GENERALES ===== -->
+  <!-- ===== ENLACES RÁPIDOS ===== -->
   <section class="section container">
     <h2>Enlaces rápidos</h2>
     <ul>
-      <li>📊 <a href="https://edtk.co/rbk/32599" target="_blank" rel="noopener">Rúbrica analítica para operaciones con polinomios</a></li>
-      <li>🤖 <a href="https://classtechtips.com/2023/08/12/prompts-for-math-teachers/" target="_blank" rel="noopener">25 prompts IA para docentes de Matemáticas</a></li>
+      <li>📊 <a href="#rubricas">Rúbricas analíticas por tema (carrusel)</a></li>
+      <li>🤖 <a href="#prompts">Prompts de IA para docentes (carrusel)</a></li>
     </ul>
 
-    <!-- ===== RECURSOS POR TEMA ===== -->
+    <!-- ===== RECURSOS POR TEMA (ES) ===== -->
     <h2>Recursos específicos por tema</h2>
     <div class="card-grid mt-2">
       <!-- Polinomios -->
-      <div class="card">
+      <div id="polinomios" class="card">
         <h3>Polinomios</h3>
-        <p>Modelado de esfuerzos y deformaciones con Jamboard interactivo.</p>
-        <a class="btn" href="https://specialeducationmathservices.com/2021/12/31/intro-to-factoring-out-gcf-scaffolded-and-jamboard/" target="_blank" rel="noopener">Abrir recurso</a>
+        <p>Definiciones, operaciones y ejercicios guiados en español.</p>
+        <div class="resource-links">
+          <a class="btn" href="https://www.sangakoo.com/es/temas/polinomios" target="_blank" rel="noopener">Sangakoo (ES)</a>
+          <a class="btn outline" href="https://zaguan.unizar.es/record/124037/files/texto_completo.pdf" target="_blank" rel="noopener">OCW Zaragoza (PDF)</a>
+        </div>
       </div>
-      <!-- Expresiones Algebraicas -->
-      <div class="card">
-        <h3>Expresiones Algebraicas</h3>
-        <p>Demo Jamboard con Equatio para creación de expresiones.</p>
-        <a class="btn" href="https://www.texthelp.com/resources/blog/create-jamboard-math-activities-with-equatio-eric-curts/" target="_blank" rel="noopener">Abrir recurso</a>
+
+      <!-- Expresiones algebraicas -->
+      <div id="expresiones" class="card">
+        <h3>Expresiones algebraicas</h3>
+        <p>Fundamentos, simplificación y equivalencias con práctica interactiva.</p>
+        <div class="resource-links">
+          <a class="btn" href="https://es.khanacademy.org/math/algebra-home/algebra-foundations" target="_blank" rel="noopener">Khan Academy (ES)</a>
+          <a class="btn outline" href="https://bibliotecavirtual.unl.edu.ar:8443/bitstream/handle/11185/3377/Algebra_Elemental.pdf" target="_blank" rel="noopener">UNL (PDF)</a>
+        </div>
       </div>
+
       <!-- Factorización -->
-      <div class="card">
+      <div id="factorizacion" class="card">
         <h3>Factorización</h3>
-        <p>Actividad Jamboard para extraer factor común.</p>
-        <a class="btn" href="https://specialeducationmathservices.com/2021/12/31/intro-to-factoring-out-gcf-scaffolded-and-jamboard/" target="_blank" rel="noopener">Abrir recurso</a>
+        <p>Métodos (factor común, trinomios, Ruffini) y práctica guiada.</p>
+        <div class="resource-links">
+          <a class="btn" href="https://es.khanacademy.org/math/algebra/x2f8bb11595b61c86:quadratics-multiplying-factoring" target="_blank" rel="noopener">Khan Academy (ES)</a>
+          <a class="btn outline" href="https://apoyo.uniandes.edu.co/images/recursos/Algebra/Polinomios/FactorizacionPolinomios.pdf" target="_blank" rel="noopener">Uniandes (PDF)</a>
+        </div>
       </div>
-      <!-- Teoría de Conjuntos -->
-      <div class="card">
-        <h3>Teoría de Conjuntos</h3>
-        <p>Plantilla Venn Diagram lista para Jamboard.</p>
-        <a class="btn" href="https://sites.google.com/view/jammingwithjamboard/templates-resources" target="_blank" rel="noopener">Abrir recurso</a>
+
+      <!-- Teoría de conjuntos -->
+      <div id="conjuntos" class="card">
+        <h3>Teoría de conjuntos</h3>
+        <p>Apuntes universitarios y problemas resueltos en español.</p>
+        <div class="resource-links">
+          <a class="btn" href="https://www.juntadeandalucia.es/averroes/centros-tic/41017441/helvia/sitio/upload/conjuntos.pdf" target="_blank" rel="noopener">Univ. Sevilla (PDF)</a>
+          <a class="btn outline" href="https://www.uv.es/ivorra/Apuntes/Conjuntos%20y%20Numeros.pdf" target="_blank" rel="noopener">Univ. Valencia (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RÚBRICAS (CARRUSEL) ===== -->
+  <section id="rubricas" class="section container">
+    <h2>Rúbricas por tema</h2>
+    <p class="lead">Evaluación analítica para primer semestre de Ingeniería Civil (escala 1–4). Criterios: dominio conceptual, procedimiento, aplicación y comunicación técnica.</p>
+
+    <div class="rubric-carousel" id="rubricCarousel">
+      <div class="rubric-track">
+        <!-- Polinomios -->
+        <div class="rubric-slide" id="rubrica-polinomios">
+          <div class="rubric-card">
+            <h3>Rúbrica – Polinomios</h3>
+            <p class="lead">Operaciones, raíces, modelado y validación.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Criterio</th><th>Peso</th>
+                    <th>4 Excelente</th><th>3 Competente</th><th>2 Básico</th><th>1 Insuficiente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Modelado y representación</td><td>25%</td>
+                    <td>Formula modelos adecuados; define dominio y supuestos.</td>
+                    <td>Modelo adecuado con supuestos menores implícitos.</td>
+                    <td>Modelo parcial o con variables omitidas.</td>
+                    <td>Modelo inadecuado.</td>
+                  </tr>
+                  <tr>
+                    <td>Procedimientos y técnicas</td><td>25%</td>
+                    <td>Opera/factoriza con rigor; justifica cada paso.</td>
+                    <td>Correcto con leves omisiones.</td>
+                    <td>Errores ocasionales.</td>
+                    <td>Incorrecto o incompleto.</td>
+                  </tr>
+                  <tr>
+                    <td>Análisis y validación</td><td>30%</td>
+                    <td>Verifica raíces y comportamiento; analiza sensibilidad.</td>
+                    <td>Verificación adecuada; análisis limitado.</td>
+                    <td>Verificación superficial.</td>
+                    <td>Sin verificación.</td>
+                  </tr>
+                  <tr>
+                    <td>Comunicación técnica</td><td>20%</td>
+                    <td>Presentación clara y notación consistente.</td>
+                    <td>Clara con mínimos descuidos.</td>
+                    <td>Organización irregular.</td>
+                    <td>Confusa o incompleta.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="rubric-actions">
+              <a class="btn outline" href="assets/rubricas/rubrica-polinomios.pdf" download>Descargar PDF</a>
+              <button class="rubric-copy" data-copy-src="#rubrica-polinomios table">Copiar rúbrica</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expresiones -->
+        <div class="rubric-slide" id="rubrica-expresiones">
+          <div class="rubric-card">
+            <h3>Rúbrica – Expresiones algebraicas</h3>
+            <p class="lead">Simplificación, equivalencias y consistencia dimensional.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Criterio</th><th>Peso</th>
+                    <th>4 Excelente</th><th>3 Competente</th><th>2 Básico</th><th>1 Insuficiente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Corrección algebraica</td><td>30%</td>
+                    <td>Simplifica manteniendo equivalencia sin errores.</td>
+                    <td>Mayormente correcto.</td>
+                    <td>Varios errores.</td>
+                    <td>No equivalente.</td>
+                  </tr>
+                  <tr>
+                    <td>Consistencia dimensional</td><td>25%</td>
+                    <td>Convierte y verifica unidades en cada paso.</td>
+                    <td>Coherente con descuidos menores.</td>
+                    <td>Inconsistencias parciales.</td>
+                    <td>Inconsistencia grave.</td>
+                  </tr>
+                  <tr>
+                    <td>Selección y justificación</td><td>25%</td>
+                    <td>Métodos apropiados y justificados.</td>
+                    <td>Métodos adecuados; breve justificación.</td>
+                    <td>Parcialmente adecuados.</td>
+                    <td>Inadecuados.</td>
+                  </tr>
+                  <tr>
+                    <td>Presentación</td><td>20%</td>
+                    <td>Notación impecable; comunicación técnica.</td>
+                    <td>Clara con detalles menores.</td>
+                    <td>Notación errática.</td>
+                    <td>Difícil de seguir.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="rubric-actions">
+              <a class="btn outline" href="assets/rubricas/rubrica-expresiones.pdf" download>Descargar PDF</a>
+              <button class="rubric-copy" data-copy-src="#rubrica-expresiones table">Copiar rúbrica</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Factorización -->
+        <div class="rubric-slide" id="rubrica-factorizacion">
+          <div class="rubric-card">
+            <h3>Rúbrica – Factorización</h3>
+            <p class="lead">Selección de método, ejecución y aplicación en contextos de diseño.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Criterio</th><th>Peso</th>
+                    <th>4 Excelente</th><th>3 Competente</th><th>2 Básico</th><th>1 Insuficiente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Selección de método</td><td>25%</td>
+                    <td>Elige el método idóneo y explica por qué.</td>
+                    <td>Selección adecuada con breve explicación.</td>
+                    <td>Selección ambigua.</td>
+                    <td>Selección incorrecta.</td>
+                  </tr>
+                  <tr>
+                    <td>Ejecución</td><td>30%</td>
+                    <td>Aplica sin errores y verifica factores.</td>
+                    <td>Correcto con pequeños descuidos.</td>
+                    <td>Errores que afectan el resultado.</td>
+                    <td>Incompleto o incorrecto.</td>
+                  </tr>
+                  <tr>
+                    <td>Aplicación al contexto</td><td>25%</td>
+                    <td>Simplifica modelos y toma decisiones de diseño.</td>
+                    <td>Aplica en un caso sencillo.</td>
+                    <td>Aplicación limitada.</td>
+                    <td>Sin aplicación.</td>
+                  </tr>
+                  <tr>
+                    <td>Verificación</td><td>20%</td>
+                    <td>Comprueba resultados y discute errores.</td>
+                    <td>Verificación básica.</td>
+                    <td>Parcial, sin análisis.</td>
+                    <td>Sin verificación.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="rubric-actions">
+              <a class="btn outline" href="assets/rubricas/rubrica-factorizacion.pdf" download>Descargar PDF</a>
+              <button class="rubric-copy" data-copy-src="#rubrica-factorizacion table">Copiar rúbrica</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conjuntos -->
+        <div class="rubric-slide" id="rubrica-conjuntos">
+          <div class="rubric-card">
+            <h3>Rúbrica – Teoría de Conjuntos</h3>
+            <p class="lead">Notación formal, operaciones, leyes y aplicaciones a clasificación.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Criterio</th><th>Peso</th>
+                    <th>4 Excelente</th><th>3 Competente</th><th>2 Básico</th><th>1 Insuficiente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Formalismo y notación</td><td>25%</td>
+                    <td>Usa notación rigurosa; define universo y subconjuntos.</td>
+                    <td>Notación adecuada con leves inconsistencias.</td>
+                    <td>Parcialmente correcta.</td>
+                    <td>Ambigua o incorrecta.</td>
+                  </tr>
+                  <tr>
+                    <td>Operaciones y leyes</td><td>25%</td>
+                    <td>Aplica operaciones y leyes con justificación.</td>
+                    <td>Aplica correctamente en ejercicios.</td>
+                    <td>Errores en operaciones.</td>
+                    <td>No aplica correctamente.</td>
+                  </tr>
+                  <tr>
+                    <td>Aplicación a datos/materiales</td><td>30%</td>
+                    <td>Modela filtros y obtiene conclusiones válidas.</td>
+                    <td>Clasificación correcta y útil.</td>
+                    <td>Clasificación parcial.</td>
+                    <td>Sin aplicación útil.</td>
+                  </tr>
+                  <tr>
+                    <td>Comunicación</td><td>20%</td>
+                    <td>Pasos reproducibles y criterios explícitos.</td>
+                    <td>Explicación clara.</td>
+                    <td>Descripción incompleta.</td>
+                    <td>No reproducible.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="rubric-actions">
+              <a class="btn outline" href="assets/rubricas/rubrica-conjuntos.pdf" download>Descargar PDF</a>
+              <button class="rubric-copy" data-copy-src="#rubrica-conjuntos table">Copiar rúbrica</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rc-controls">
+        <div class="rc-arrows">
+          <button class="rc-btn" id="rcPrev" aria-label="Anterior">‹</button>
+          <button class="rc-btn" id="rcNext" aria-label="Siguiente">›</button>
+        </div>
+        <div class="rc-dots" id="rcDots" aria-label="Paginación"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROMPTS (CARRUSEL) ===== -->
+  <section id="prompts" class="section container">
+    <h2>Prompts profesionales para docentes</h2>
+    <p class="lead">Usa estos prompts para generar explicaciones, ejercicios, soluciones paso a paso y evaluaciones con soporte de IA.</p>
+
+    <div class="prompt-carousel" id="promptCarousel">
+      <div class="prompt-track">
+        <!-- Factorización -->
+        <div class="prompt-slide">
+          <div class="prompt-card">
+            <div class="prompt-meta">
+              <span class="prompt-badge">Factorización</span>
+              <span class="prompt-badge" style="background:#e7f0fb;color:#1f4aa8">Convergente</span>
+            </div>
+            <h3>Banco de prompts – Factorización</h3>
+            <p class="lead">Generación de problemas, explicación guiada y evaluación.</p>
+            <ol class="prompt-list" id="plist-1">
+              <li><strong>Ejercicio contextualizado:</strong> Diseña un problema con el polinomio <em>6x^3−11x^2−33x+18</em> y solución paso a paso.</li>
+              <li><strong>Explicación guiada:</strong> Factoriza <em>12x^4−3x^2+9</em> por agrupación y justifica cada etapa.</li>
+              <li><strong>Cuestionario:</strong> 5 ítems de opción múltiple sobre cuadráticos aplicados a áreas.</li>
+              <li><strong>Reto colaborativo:</strong> Factorizar para optimizar costo de materiales en una losa.</li>
+              <li><strong>Comparar métodos:</strong> Ruffini vs. factor común con un ejemplo de momento flector.</li>
+            </ol>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="plist-1">Copiar estos prompts</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polinomios -->
+        <div class="prompt-slide">
+          <div class="prompt-card">
+            <div class="prompt-meta">
+              <span class="prompt-badge">Polinomios</span>
+              <span class="prompt-badge" style="background:#fff4cc;color:#7a5c00">Asimilador</span>
+            </div>
+            <h3>Banco de prompts – Polinomios</h3>
+            <p class="lead">Modelado, análisis y visualización de funciones polinómicas.</p>
+            <ol class="prompt-list" id="plist-2">
+              <li><strong>Modelar fenómeno:</strong> Polinomio de 4º grado para deflexión de una viga; hallar raíces.</li>
+              <li><strong>Visualizar con software:</strong> Script en Python para graficar un cúbico de presión de viento.</li>
+              <li><strong>Comportamiento:</strong> Explica un quíntico aplicado a curva de carga de un suelo.</li>
+              <li><strong>Problema inverso:</strong> Construir el polinomio a partir de valores de carga.</li>
+              <li><strong>Optimización:</strong> Minimizar volumen de concreto en una zapata.</li>
+            </ol>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="plist-2">Copiar estos prompts</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conjuntos -->
+        <div class="prompt-slide">
+          <div class="prompt-card">
+            <div class="prompt-meta">
+              <span class="prompt-badge">Teoría de Conjuntos</span>
+              <span class="prompt-badge" style="background:#e6ffed;color:#245c1a">Divergente</span>
+            </div>
+            <h3>Banco de prompts – Teoría de Conjuntos</h3>
+            <p class="lead">Clasificación, operaciones y aplicaciones.</p>
+            <ol class="prompt-list" id="plist-3">
+              <li><strong>Venn:</strong> Clasificar materiales por resistencia y densidad.</li>
+              <li><strong>Operaciones:</strong> 5 problemas de unión e intersección para suelos.</li>
+              <li><strong>Bases de datos:</strong> Filtrado de ensayos de hormigón con operaciones de conjuntos.</li>
+              <li><strong>Borrosos:</strong> Riesgo sísmico con conjuntos difusos; propone ejercicio.</li>
+              <li><strong>Cardinalidad:</strong> Contar combinaciones de armaduras en losas.</li>
+            </ol>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="plist-3">Copiar estos prompts</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expresiones -->
+        <div class="prompt-slide">
+          <div class="prompt-card">
+            <div class="prompt-meta">
+              <span class="prompt-badge">Expresiones Algebraicas</span>
+              <span class="prompt-badge" style="background:#ffe6e6;color:#7a1a1a">Acomodador</span>
+            </div>
+            <h3>Banco de prompts – Expresiones Algebraicas</h3>
+            <p class="lead">Simplificación, unidades, derivación e identidades.</p>
+            <ol class="prompt-list" id="plist-4">
+              <li><strong>Simplificación contextualizada:</strong> 3 expresiones de caudal para simplificar.</li>
+              <li><strong>Unidades:</strong> Mezclar kPa/psi y m/ft con verificación dimensional.</li>
+              <li><strong>Derivación:</strong> Esfuerzos en columna circular (derivar y simplificar).</li>
+              <li><strong>Identidades:</strong> 4 preguntas de identidades en energía potencial.</li>
+              <li><strong>Errores comunes:</strong> 5 errores típicos en balances de fuerzas y correcciones.</li>
+            </ol>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="plist-4">Copiar estos prompts</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc-controls">
+        <div class="pc-arrows">
+          <button class="pc-btn" id="pcPrev" aria-label="Anterior">‹</button>
+          <button class="pc-btn" id="pcNext" aria-label="Siguiente">›</button>
+        </div>
+        <div class="pc-dots" id="pcDots" aria-label="Paginación"></div>
       </div>
     </div>
   </section>
@@ -80,36 +491,126 @@
     <h2>Bibliografía / Referencias</h2>
     <table>
       <thead>
-        <tr><th>Autor</th><th>Año</th><th>Referencia</th></tr>
+        <tr><th>Autor/Entidad</th><th>Año</th><th>Referencia</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Curts, E.</td>
-          <td>2021</td>
-          <td>"Create Jamboard Math Activities with Equatio" – <em>Texthelp Blog</em>. Disponible en: <a href="https://www.texthelp.com/resources/blog/create-jamboard-math-activities-with-equatio-eric-curts/" target="_blank" rel="noopener">texthelp.com</a></td>
-        </tr>
-        <tr>
-          <td>ctspedmathdude</td>
-          <td>2021</td>
-          <td>"Intro to Factoring Out GCF – Scaffolded and Jamboard" – <em>Special Education Math Services</em>. Disponible en: <a href="https://specialeducationmathservices.com/2021/12/31/intro-to-factoring-out-gcf-scaffolded-and-jamboard/" target="_blank" rel="noopener">specialeducationmathservices.com</a></td>
-        </tr>
-        <tr>
-          <td>Burns, M.</td>
-          <td>2023</td>
-          <td>"25 ChatGPT Prompts for Math Teachers" – <em>ClassTechTips</em>. Disponible en: <a href="https://classtechtips.com/2023/08/12/prompts-for-math-teachers/" target="_blank" rel="noopener">classtechtips.com</a></td>
-        </tr>
-        <tr>
-          <td>EdutekaLab</td>
-          <td>2023</td>
-          <td>Rúbrica para evaluar operaciones con polinomios – <em>EdutekaLab</em>. Disponible en: <a href="https://edtk.co/rbk/32599" target="_blank" rel="noopener">edtk.co</a></td>
-        </tr>
+        <tr><td>Sangakoo</td><td>—</td><td>“Polinomios”. Disponible en: <a href="https://www.sangakoo.com/es/temas/polinomios" target="_blank" rel="noopener">sangakoo.com</a></td></tr>
+        <tr><td>Universidad de Zaragoza (OCW)</td><td>—</td><td>Apuntes de álgebra: polinomios. <a href="https://zaguan.unizar.es/record/124037/files/texto_completo.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>Khan Academy (ES)</td><td>—</td><td>Álgebra en español. <a href="https://es.khanacademy.org/math/algebra-home/algebra-foundations" target="_blank" rel="noopener">es.khanacademy.org</a></td></tr>
+        <tr><td>Universidad Nacional del Litoral</td><td>—</td><td><em>Álgebra Elemental</em>. <a href="https://bibliotecavirtual.unl.edu.ar:8443/bitstream/handle/11185/3377/Algebra_Elemental.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>Universidad de los Andes</td><td>—</td><td>“Factorización de polinomios”. <a href="https://apoyo.uniandes.edu.co/images/recursos/Algebra/Polinomios/FactorizacionPolinomios.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>Universidad de Sevilla</td><td>—</td><td>Apuntes de Teoría de Conjuntos. <a href="https://www.juntadeandalucia.es/averroes/centros-tic/41017441/helvia/sitio/upload/conjuntos.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>Universidad de Valencia</td><td>—</td><td>Conjuntos y Números. <a href="https://www.uv.es/ivorra/Apuntes/Conjuntos%20y%20Numeros.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
       </tbody>
     </table>
   </section>
 </main>
 
-<footer>© 2025 Universidad Cooperativa de Colombia – Ingeniería Civil</footer>
+<footer>© 2025 Universidad Cooperativa de Colombia – Ingeniería Civil • Vigilada Mineducación</footer>
 
+<!-- JS: Carruseles, copiar y deep links -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ===== Utilidad: carrusel genérico =====
+  function makeCarousel(rootId, trackSel, slideSel, prevId, nextId, dotsId){
+    const root   = document.getElementById(rootId);
+    if(!root) return;
+    const track  = root.querySelector(trackSel);
+    const slides = [...root.querySelectorAll(slideSel)];
+    const prev   = document.getElementById(prevId);
+    const next   = document.getElementById(nextId);
+    const dotsW  = document.getElementById(dotsId);
+    let idx = 0;
+
+    function renderDots(){
+      if(!dotsW) return;
+      dotsW.innerHTML = slides.map((_,i)=>
+        `<button class="${i===idx?'pc-dot active':'pc-dot'}" aria-label="Ir al slide ${i+1}"></button>`
+      ).join('');
+      [...dotsW.children].forEach((b,i)=>b.onclick=()=>go(i));
+    }
+    function go(i){
+      idx = (i+slides.length)%slides.length;
+      track.style.transform = `translateX(-${idx*100}%)`;
+      renderDots();
+    }
+    // Controles
+    if(prev) prev.onclick = ()=>go(idx-1);
+    if(next) next.onclick = ()=>go(idx+1);
+    renderDots();
+
+    // Swipe: touch + mouse (fallback universal)
+    let startX=null;
+    const start = e => { startX = (e.touches? e.touches[0].clientX : e.clientX); };
+    const end   = e => {
+      if(startX==null) return;
+      const x = (e.changedTouches? e.changedTouches[0].clientX : e.clientX);
+      const dx = x - startX;
+      if(dx<-30) go(idx+1);
+      if(dx> 30) go(idx-1);
+      startX=null;
+    };
+    track.addEventListener('mousedown', start);
+    track.addEventListener('mouseup',   end);
+    track.addEventListener('touchstart',start, {passive:true});
+    track.addEventListener('touchend',  end);
+
+    return {go};
+  }
+
+  // ===== Carrusel de RÚBRICAS =====
+  const rubric = makeCarousel(
+    'rubricCarousel', '.rubric-track', '.rubric-slide', 'rcPrev', 'rcNext', 'rcDots'
+  );
+
+  // Botón "Copiar rúbrica"
+  document.querySelectorAll('.rubric-copy').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const sel = btn.getAttribute('data-copy-src');
+      const el  = document.querySelector(sel);
+      if(!el) return;
+      const text = el.innerText.replace(/\n\n+/g,'\n');
+      navigator.clipboard.writeText(text).then(()=>{
+        const old = btn.textContent; btn.textContent='¡Copiada!';
+        setTimeout(()=>btn.textContent=old,1200);
+      });
+    });
+  });
+
+  // Deep link a slide de rúbricas
+  const mapR = { 'rubricas-polinomios':0, 'rubricas-expresiones':1, 'rubricas-factorizacion':2, 'rubricas-conjuntos':3 };
+  const hR = location.hash.replace('#','');
+  if(mapR[hR] !== undefined && rubric) rubric.go(mapR[hR]);
+
+  // ===== Carrusel de PROMPTS =====
+  const prompts = makeCarousel(
+    'promptCarousel', '.prompt-track', '.prompt-slide', 'pcPrev', 'pcNext', 'pcDots'
+  );
+
+  // Copiar prompts
+  document.querySelectorAll('.copy-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const id   = btn.getAttribute('data-target');
+      const list = document.getElementById(id);
+      if(!list) return;
+      const text = [...list.querySelectorAll('li')].map(li=>li.innerText).join('\n');
+      navigator.clipboard.writeText(text).then(()=>{
+        const old = btn.textContent; btn.textContent='¡Copiados!';
+        setTimeout(()=>btn.textContent=old,1200);
+      });
+    });
+  });
+
+  // Deep link a slide de prompts
+  const mapP = { 'prompts-factorizacion':0, 'prompts-polinomios':1, 'prompts-conjuntos':2, 'prompts-expresiones':3 };
+  const hP = location.hash.replace('#','');
+  if(mapP[hP] !== undefined && prompts) prompts.go(mapP[hP]);
+
+});
+</script>
 <script src="js/main.js"></script>
+
 </body>
 </html>
+
+

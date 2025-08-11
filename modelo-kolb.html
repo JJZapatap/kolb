@@ -1,93 +1,220 @@
-<!DOCTYPE html><html lang="es"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Modelo Kolb</title>
-<link rel="stylesheet" href="css/style.css"/></head><body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelo Kolb</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Overrides locales para tarjetas elegantes + leyenda chips -->
+  <style>
+    /* Layout y micro-estética de las tarjetas Kolb */
+    .kolb-cards .style-card{
+      text-align:left;
+      padding:1.6rem 1.4rem 1.3rem;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 10px 28px rgba(0,0,0,.10);
+      transition:transform .22s ease, box-shadow .22s ease;
+      background:
+        radial-gradient(1200px 1200px at -10% -10%, rgba(52,152,219,.06), transparent 40%),
+        linear-gradient(180deg,#fff, #fbfdff);
+    }
+    .kolb-cards .style-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,0,0,.14)}
+    .kolb-cards .style-card .top-strip{height:6px;border-radius:12px 12px 0 0;opacity:.9}
+
+    /* Header de cada tarjeta: icono + título a la par */
+    .kolb-cards .header-line{display:flex;align-items:center;gap:.8rem;margin:.2rem 0 1rem 0}
+    .kolb-cards .header-line .icon{width:56px;height:56px;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(0,0,0,.08));margin:0}
+    .kolb-cards .header-line h3{margin:0;color:var(--ucc-green-dark);font-size:1.15rem;letter-spacing:.02em}
+
+    /* Subtítulos y listas */
+    .kolb-cards .style-card h4{margin:.9rem 0 .5rem;color:var(--ucc-green-dark);font-size:.95rem;text-transform:uppercase;letter-spacing:.02em}
+    .kolb-cards .style-card ul{margin:.25rem 0 0 1.1rem;color:var(--mid-gray)}
+    .kolb-cards .style-card ul li{margin:.22rem 0}
+
+    /* Chips (siglas Kolb) y tipología */
+    .k-meta{display:flex;gap:.4rem;align-items:center;flex-wrap:nowrap;min-height:32px;overflow:hidden}
+    .k-chip{display:inline-block;background:#eef6ff;border:1px solid #d7e8ff;color:#1f4aa8;padding:.15rem .5rem;border-radius:999px;font-size:.75rem;font-weight:700}
+    .k-chip.alt{background:#e7f3e2;border-color:#d7ead3;color:var(--ucc-green-dark)}
+    @media(max-width:560px){.k-meta{flex-wrap:wrap;min-height:auto}}
+
+    /* Leyenda */
+    .chip-legend{background:#f8fbff;border:1px solid #e6eefb;padding:.75rem 1rem;border-radius:12px;margin:-.25rem 0 1rem}
+    .chip-legend .legend-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.5rem .75rem;align-items:center}
+    .chip-legend .k-chip{margin-right:.45rem}
+    .chip-legend strong{display:block;color:var(--ucc-green-dark);margin:.1rem 0 .35rem}
+    .chip-legend em{font-style:normal;font-weight:600}
+    .chip-legend small{color:var(--mid-gray);margin-left:.25rem}
+
+    /* Uniformidad de altura del header visual */
+    .kolb-cards .header-line{min-height:56px}
+  </style>
+</head>
+<body>
 <header>
   <div class="container navbar">
-    <a href="index.html" class="logo">Kolb‑UCC</a>
+    <a href="index.html" class="logo">
+      <img src="assets/Logo_UCC.svg" alt="Universidad Cooperativa de Colombia" onerror="this.onerror=null;this.src='assets/ucc-logo.png';">
+    </a>
     <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
-    <nav><ul id="nav-menu"><li><a href="index.html">Inicio</a></li>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="index.html">Inicio</a></li>
         <li><a class="active" href="modelo-kolb.html">Modelo Kolb</a></li>
         <li><a href="estrategias.html">Estrategias por tema</a></li>
         <li><a href="recursos.html">Recursos Docentes</a></li>
         <li><a href="evidencias.html">Evidencias</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        </ul></nav>
+      </ul>
+    </nav>
   </div>
 </header>
+
 <section class="banner">
   <div class="text">
     <h1>MODELO KOLB</h1>
-    <p>Comprende los cuatro estilos y el ciclo experiencial</p>
+    <p>Entendiendo los cuatro estilos de aprendizaje y el ciclo experiencial</p>
   </div>
   <div class="circles">
-    <div class="bubble"><img src="assets/estudiante.png" alt="Imagen 1"></div>
-    <div class="bubble"><img src="assets/math.png" alt="Imagen 2"></div>
+    <div class="bubble"><img src="assets/estudiante.png" alt="Estudiante"></div>
+    <div class="bubble"><img src="assets/math.png" alt="Símbolos matemáticos"></div>
   </div>
 </section>
+
 <main>
-<section class="section container">
-  <h2>Los cuatro estilos</h2>
-  
- <div class="styles-grid">
-  <article class="style-card" style="--color:#e74c3c;">
-    <span class="top-strip"></span>
-    <img class="icon" src="assets/reloj1.png" alt="Icono divergente">
-    <h3>Divergente</h3>
-    <p>
-	 <!-- Observadores, imaginativos, disfrutan relacionar múltiples ideas.</p> -->
-     El estilo Divergente combina la experiencia concreta con la observación reflexiva. Los estudiantes con este estilo prefieren aprender observando, generando ideas, reflexionando en grupo y explorando diferentes perspectivas. Se sienten cómodos con el aprendizaje visual, narrativo y colaborativo, y disfrutan del análisis creativo y contextual. Son intuitivos y emocionales, y disfrutan creando significados personales a partir de las experiencias.
-	 <!-- <a class="btn style-btn" href="estilos/conjuntos-divergente.html">Ver guía</a>  -->
-		</p>
-	</article>
+  <!-- ===== Estilos con características y estrategias ===== -->
+  <section class="section container">
+    <h2>Los cuatro estilos</h2>
 
-  <article class="style-card" style="--color:#27ae60;">
-    <span class="top-strip"></span>
-    <img class="icon" src="assets/asimila.png" alt="Icono asimilador">
-    <h3>Asimilador</h3>
-    <p>
-	   <!-- Conceptualizan y organizan la información en modelos lógicos.</p>-->
-    El estilo Asimilador combina conceptualización abstracta con observación reflexiva. Estos estudiantes aprenden mejor mediante modelos teóricos, esquemas organizados y análisis lógico. Valoran la claridad conceptual antes de aplicar el conocimiento. Son buenos para organizar información y comprender conceptos de manera profunda antes de aplicarlos.
-	
-	   <!-- <a class="btn style-btn" href="estilos/conjuntos-asimilador.html">Ver guía</a>  -->
-	</p>
-	</article>
+    <!-- Leyenda de chips: Percepción (EC/CA) y Procesamiento (OR/EA) -->
+    <div class="chip-legend" aria-label="Dimensiones del ciclo experiencial de Kolb">
+      <strong>Dimensiones del ciclo de Kolb: Percepción y Procesamiento</strong>
+      <div class="legend-items" style="margin-top:.35rem">
+        <div><span class="k-chip">EC</span> <em>Experiencia Concreta</em><small>— Percepción (vivir la experiencia)</small></div>
+        <div><span class="k-chip">CA</span> <em>Conceptualización Abstracta</em><small>— Percepción (conceptualizar)</small></div>
+        <div><span class="k-chip">OR</span> <em>Observación Reflexiva</em><small>— Procesamiento (reflexionar)</small></div>
+        <div><span class="k-chip">EA</span> <em>Experimentación Activa</em><small>— Procesamiento (probar/actuar)</small></div>
+      </div>
+    </div>
 
-  <article class="style-card" style="--color:#f1c40f;">
-    <span class="top-strip"></span>
-    <img class="icon" src="assets/converge.png" alt="Icono convergente">
-    <h3>Convergente</h3>
-     <p>
-	   <!-- Aplican teorías a problemas concretos. -->
-	
-	Los estudiantes con estilo convergente combinan la conceptualización abstracta con la experimentación activa. Prefieren aplicar ideas teóricas a problemas concretos, disfrutan del análisis lógico, la toma de decisiones fundamentadas y la solución eficiente de retos. Prefieren trabajar con tareas bien definidas y desafíos que exijan soluciones únicas.
-	
-	</p>
-       <!-- <a class="btn style-btn" href="estilos/conjuntos-convergente.html">Ver guía</a>  -->
-	
-	</article>
+    <div class="styles-grid kolb-cards">
+      <!-- Convergente (CA + EA) -->
+      <article class="style-card" style="--color:#f1c40f;">
+        <span class="top-strip"></span>
+        <div class="header-line">
+          <img class="icon" src="assets/converge.png" alt="Icono Convergente">
+          <h3>Convergente</h3>
+        </div>
+        <div class="k-meta">
+          <span class="k-chip">CA + EA</span>
+          <span class="k-chip alt">Aplica teoría a problemas</span>
+        </div>
+        <h4>Características</h4>
+        <ul>
+          <li>Práctico; transfiere lo aprendido.</li>
+          <li>Se involucra rápido y va a la solución.</li>
+          <li>Eficiente en la aplicación de la teoría.</li>
+        </ul>
+        <h4>Estrategias metodológicas preferidas</h4>
+        <ul>
+          <li>Proyectos y demostraciones prácticas.</li>
+          <li>Resolución de problemas con datos definidos.</li>
+          <li>Gráficos, mapas y clasificación de información.</li>
+        </ul>
+      </article>
 
-  <article class="style-card" style="--color:#3498db;">
-    <span class="top-strip"></span>
-    <img class="icon" src="assets/diverge.png" alt="Icono acomodador">
-    <h3>Acomodador</h3>
-    <p>
-	  <!--  Aprenden haciendo y experimentando. --
-       <!-- <a class="btn style-btn" href="estilos/conjuntos-acomodador.html">Ver guía</a>   -->
-	   El estilo Acomodador combina la experiencia concreta con la experimentación activa. Los estudiantes con este estilo aprenden mejor mediante la acción, la exploración de nuevas experiencias, la resolución de retos reales y el trabajo colaborativo. Disfrutan del aprendizaje práctico y se sienten cómodos con el cambio y la improvisación. Son prácticos, intuitivos y les gusta aprender haciendo.
-	   
-	</p>
-	</article>
-</div>
+      <!-- Divergente (EC + OR) -->
+      <article class="style-card" style="--color:#e74c3c;">
+        <span class="top-strip"></span>
+        <div class="header-line">
+          <img class="icon" src="assets/reloj1.png" alt="Icono Divergente">
+          <h3>Divergente</h3>
+        </div>
+        <div class="k-meta">
+          <span class="k-chip">EC + OR</span>
+          <span class="k-chip alt">Genera ideas y perspectivas</span>
+        </div>
+        <h4>Características</h4>
+        <ul>
+          <li>Kinestésico y flexible; creativo e informal.</li>
+          <li>Explora diferentes enfoques.</li>
+        </ul>
+        <h4>Estrategias metodológicas preferidas</h4>
+        <ul>
+          <li>Lluvia de ideas y simulaciones.</li>
+          <li>Analogías, predicciones y experimentos.</li>
+          <li>Mapas conceptuales, puzzles y acertijos.</li>
+        </ul>
+      </article>
 
-</section>
-<section class="section container">
-  <h2>El ciclo de Kolb</h2>
-  <p class="lead">Experiencia concreta → Observación reflexiva → Conceptualización abstracta → Experimentación activa.</p>
-  <div class="ratio">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/JR2ne305mqA?si=NyAQQNFkwUbZe80B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
-</section>
+      <!-- Asimilador (CA + OR) -->
+      <article class="style-card" style="--color:#27ae60;">
+        <span class="top-strip"></span>
+        <div class="header-line">
+          <img class="icon" src="assets/asimila.png" alt="Icono Asimilador">
+          <h3>Asimilador</h3>
+        </div>
+        <div class="k-meta">
+          <span class="k-chip">CA + OR</span>
+          <span class="k-chip alt">Modelo teórico y análisis</span>
+        </div>
+        <h4>Características</h4>
+        <ul>
+          <li>Reflexivo, analítico, organizado y sistemático.</li>
+          <li>Razonamiento riguroso y pensamiento secuencial.</li>
+        </ul>
+        <h4>Estrategias metodológicas preferidas</h4>
+        <ul>
+          <li>Lecturas, conferencias y toma de apuntes.</li>
+          <li>Investigación, debates y ordenamiento de datos.</li>
+        </ul>
+      </article>
+
+      <!-- Acomodador (EC + EA) -->
+      <article class="style-card" style="--color:#3498db;">
+        <span class="top-strip"></span>
+        <div class="header-line">
+          <img class="icon" src="assets/diverge.png" alt="Icono Acomodador">
+          <h3>Acomodador</h3>
+        </div>
+        <div class="k-meta">
+          <span class="k-chip">EC + EA</span>
+          <span class="k-chip alt">Aprender haciendo</span>
+        </div>
+        <h4>Características</h4>
+        <ul>
+          <li>Intuitivo, observador, relaciona contenidos.</li>
+          <li>Imaginativo; valora la experiencia y el entorno.</li>
+        </ul>
+        <h4>Estrategias metodológicas preferidas</h4>
+        <ul>
+          <li>Trabajo grupal, expresión artística, periodismo.</li>
+          <li>Ensayo y error, metáforas y gráficos ilustrativos.</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Referencias solicitadas -->
+    <div class="kolb-references">
+      <strong>Referencias</strong>
+      <ul>
+        <li>Kolb, D. A. (1984). <em>Experiential Learning: Experience as the Source of Learning and Development</em>. Prentice Hall.</li>
+        <li>Lara, V. (2016). <em>Caracterización de estilos de aprendizaje y estrategias metodológicas</em>. Documento de elaboración.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Ciclo de Kolb ===== -->
+  <section class="section container">
+    <h2>El ciclo de Kolb</h2>
+    <p class="lead">Experiencia concreta → Observación reflexiva → Conceptualización abstracta → Experimentación activa.</p>
+    <div class="ratio">
+      <iframe src="https://www.youtube.com/embed/JR2ne305mqA?si=NyAQQNFkwUbZe80B" title="Ciclo de Kolb (video explicativo)" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
 </main>
-<footer>© 2025 Universidad Cooperativa de Colombia – Ingeniería Civil</footer>
-<script src="js/main.js"></script></body></html>
+
+<footer>© 2025 Universidad Cooperativa de Colombia – Ingeniería Civil • Vigilada Mineducación</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
+
