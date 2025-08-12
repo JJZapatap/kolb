@@ -2,22 +2,44 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evidencias</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <!-- Estilos mínimos para carrusel -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Repositorio Abierto</title>
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <!-- ===== Estilos locales: Carrusel por temas + botones uniformes ===== -->
   <style>
-    .carousel{position:relative;overflow:hidden;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);}  
-    .carousel .slide{display:none;align-items:center;justify-content:center;padding:2rem;background:var(--white);}  
-    .carousel .slide.active{display:flex;}  
-    .carousel-nav{display:flex;justify-content:center;gap:1rem;margin-top:1rem;}  
-    .carousel-nav button{background:var(--ucc-green);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.4rem;cursor:pointer;transition:var(--transition);}  
-    .carousel-nav button:hover{background:var(--ucc-green-dark);}  
-    .slide-content{text-align:center;}  
-    .slide-content img{border-radius:8px;max-width:100%;height:auto;}  
-    .slide-content h3{margin-top:1rem;color:var(--ucc-green-dark);}  
-    .slide-content .badge{margin-top:.4rem;}  
-    @media(max-width:620px){.carousel-nav button{width:36px;height:36px;font-size:1.2rem;}}
+    /* Carrusel base */
+    .topic-carousel{position:relative;background:var(--white);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden}
+    .topic-track{display:flex;transition:transform .35s var(--transition);will-change:transform}
+    .topic-slide{min-width:100%;padding:1.25rem}
+    .topic-header{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.75rem}
+    .topic-header h3{margin:0;color:var(--ucc-green-dark);font-size:1.15rem}
+    .topic-sub{color:var(--mid-gray);margin:0 0 .75rem 0}
+
+    /* Tarjetas internas (aprovechan tu .card-grid) */
+    .topic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+    .topic-card.card{display:flex;flex-direction:column;justify-content:space-between}
+    .style-chip{display:inline-block;font-weight:700;font-size:.75rem;padding:.2rem .5rem;border-radius:6px;margin-bottom:.5rem}
+    .chip-div{background:#fdecea;color:#b3261e}       /* Divergente */
+    .chip-asi{background:#e7f3e2;color:#2d5d16}       /* Asimilador */
+    .chip-con{background:#fff4cc;color:#7a5c00}       /* Convergente */
+    .chip-aco{background:#e6f0ff;color:#1f4aa8}       /* Acomodador */
+
+    /* Botón ancho uniforme */
+    .btn.block{display:block;width:100%;text-align:center}
+    .topic-actions{margin-top:.75rem}
+
+    /* Controles del carrusel */
+    .tc-controls{display:flex;justify-content:space-between;align-items:center;padding:.5rem 1rem 1rem}
+    .tc-arrows{display:flex;gap:.5rem}
+    .tc-btn{background:#3498db;color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.2rem;cursor:pointer;transition:var(--transition)}
+    .tc-btn:hover{background:#2980b9}
+    .tc-dots{display:flex;gap:.35rem}
+    .tc-dot{width:10px;height:10px;border-radius:50%;background:#cfd8dc;border:none;cursor:pointer}
+    .tc-dot.active{background:#3498db}
+
+    /* Accesibilidad/scroll */
+    #polinomios,#expresiones,#factorizacion,#conjuntos{scroll-margin-top:84px}
   </style>
 </head>
 <body>
@@ -35,98 +57,222 @@
         <li><a href="modelo-kolb.html">Modelo Kolb</a></li>
         <li><a href="estrategias.html">Estrategias por tema</a></li>
         <li><a href="recursos.html">Recursos Docentes</a></li>
-        <li><a class="active" href="evidencias.html">Evidencias</a></li>
+        <li><a class="active" href="evidencias.html">Repositorio</a></li>
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<!-- Banner principal -->
 <section class="banner">
   <div class="text">
-    <h1>EVIDENCIAS</h1>
-    <p>Ejemplos ilustrativos de los temas abordados</p>
+    <h1>REPOSITORIO ABIERTO</h1>
+    <p>Ejemplos ilustrativos por tema y estilo de Kolb (PDF de acceso abierto)</p>
   </div>
   <div class="circles">
     <div class="bubble"><img src="assets/estudiante.png" alt="Estudiante"></div>
-    <div class="bubble"><img src="assets/math.png" alt="Matemáticas"></div>
+    <div class="bubble"><img src="assets/math.png" alt="Símbolos matemáticos"></div>
   </div>
 </section>
 
 <main>
-  <!-- Carrusel de evidencias -->
   <section class="section container">
-    <h2>Galería interactiva</h2>
-    <p class="lead">Explora las evidencias una a una deslizando.</p>
+    <h2>Galería por tema (4 estilos de Kolb)</h2>
+    <p class="lead">Desliza para ver Polinomios, Expresiones Algebraicas, Factorización y Teoría de Conjuntos. Cada tema incluye recursos en español, verificables y sin registro.</p>
 
-    <div class="carousel" id="evidenceCarousel">
-      <!-- Slide 1: Factorización -->
-      <div class="slide active">
-        <div class="slide-content" style="width:100%;max-width:720px;margin:0 auto;">
-          <div class="ratio">
-            <iframe src="https://www.youtube.com/embed/a8CUEopWCN0" title="Ejemplo de Factorización" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <h3>Factorización – ejemplo práctico</h3>
-          <p class="badge">Convergente</p>
-        </div>
-      </div>
-      <!-- Slide 2: Teoría de Conjuntos -->
-      <div class="slide">
-        <div class="slide-content" style="width:100%;max-width:720px;margin:0 auto;">
-          <div class="ratio">
-            <iframe src="https://www.youtube.com/embed/PJ7Np0bFW2I" title="Ejemplo Teoría de Conjuntos" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <h3>Teoría de Conjuntos – ejemplo</h3>
-          <p class="badge">Divergente</p>
-        </div>
-      </div>
-      <!-- Slide 3: Polinomios -->
-      <div class="slide">
-        <div class="slide-content" style="width:100%;max-width:720px;margin:0 auto;">
-          <div class="ratio">
-            <iframe src="https://www.youtube.com/embed/CN74gDx7mYY" title="Ejemplo de Polinomios" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <h3>Polinomios – ejemplo resuelto</h3>
-          <p class="badge">Asimilador</p>
-        </div>
-      </div>
-    </div>
+    <!-- ===== Carrusel por temas ===== -->
+    <div class="topic-carousel" id="topicCarousel">
+      <div class="topic-track">
 
-    <div class="carousel-nav">
-      <button class="prev" aria-label="Anterior">‹</button>
-      <button class="next" aria-label="Siguiente">›</button>
-    </div>
-  </section>
+        <!-- Slide 1: POLINOMIOS -->
+        <section class="topic-slide" id="polinomios" aria-label="Polinomios">
+          <div class="topic-header">
+            <h3>Polinomios — ejercicios resueltos</h3>
+          </div>
+          <p class="topic-sub">OCW y apuntes universitarios. PDF abiertos.</p>
+          <div class="topic-grid">
+            <article class="topic-card card">
+              <span class="style-chip chip-div">Divergente</span>
+              <h3>OCW UCA – Ejercicios resueltos de funciones polinómicas</h3>
+              <p>Selección de raíces, Ruffini y más con resolución paso a paso.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://ocw.uca.es/mod/resource/view.php?id=4386" target="_blank">Abrir PDF</a>
+              </div>
+            </article>
 
-  <!-- Documentos descargables -->
-  <section class="section container" style="background:#f5f7fa;border-radius:12px;">
-    <h2>Guías de ejercicios descargables</h2>
-    <p class="lead">Colección de ejercicios prácticos (PDF libres) para reforzar cada tema.</p>
-    <div class="card-grid">
-      <!-- Polinomios -->
-      <div class="card">
-        <h3>Polinomios</h3>
-        <p>"Worksheet: Polynomials" – mathcentre (4&nbsp;pág.).</p>
-        <a class="btn outline" href="https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-polynomials-worksheet-2009-1.pdf" target="_blank" rel="noopener">Descargar PDF</a>
+            <article class="topic-card card">
+              <span class="style-chip chip-asi">Asimilador</span>
+              <h3>UPV – Matemáticas básicas para ingenierías</h3>
+              <p>Compendio de ejercicios y teoría de polinomios para ingeniería.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://gdocu.upv.es/alfresco/service/api/node/content/workspace/SpacesStore/9b63c327-53df-4998-bb80-01e7f985a33c/TOC_0550_03_01.pdf?guest=true" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-con">Convergente</span>
+              <h3>UNSJ – Unidad 3: Polinomios</h3>
+              <p>Unidad de trabajo con problemas aplicados y soluciones.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://exactas.unsj.edu.ar/wp-content/uploads/2021/09/UNIDAD3-POLINOMIOS.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-aco">Acomodador</span>
+              <h3>UNLP – Polinomios 1</h3>
+              <p>Prácticas con resolución y propuestas para trabajo activo.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://www.mate.unlp.edu.ar/practicas/49_19_29102020132954.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Slide 2: EXPRESIONES ALGEBRAICAS -->
+        <section class="topic-slide" id="expresiones" aria-label="Expresiones Algebraicas">
+          <div class="topic-header">
+            <h3>Expresiones algebraicas — ejercicios resueltos</h3>
+          </div>
+          <p class="topic-sub">Talleres y cuadernillos con soluciones.</p>
+          <div class="topic-grid">
+            <article class="topic-card card">
+              <span class="style-chip chip-div">Divergente</span>
+              <h3>Uninorte – Taller de Álgebra</h3>
+              <p>Problemas variados con desarrollo y actividades.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://www.uninorte.edu.co/documents/13942513/0/Taller+de+%C3%81lgebra.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-asi">Asimilador</span>
+              <h3>Mineduc (Chile) – Álgebra y funciones</h3>
+              <p>Cuadernillo con ejercicios guiados y respuestas.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://acceso.mineduc.cl/wp-content/uploads/2021/06/Cuadernillo-Matematica-eje-algebra-y-funciones-2021.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-con">Convergente</span>
+              <h3>OCW EHU – Álgebra elemental</h3>
+              <p>Resumen operativo con ejemplos y ejercicios.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://ocw.ehu.eus/pluginfile.php/39383/mod_resource/content/5/%C3%81lgebra%20elemental.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-aco">Acomodador</span>
+              <h3>IESSG – Expresiones algebraicas (resueltas)</h3>
+              <p>Hoja de ejercicios resueltos para práctica autónoma.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://blogsaverroes.juntadeandalucia.es/iessierradegrazalema/files/2020/01/EJERCICIOS-RESUELTOS.-Expresiones-algebraicas.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Slide 3: FACTORIZACIÓN -->
+        <section class="topic-slide" id="factorizacion" aria-label="Factorización">
+          <div class="topic-header">
+            <h3>Factorización — ejercicios resueltos</h3>
+          </div>
+          <p class="topic-sub">Apuntes y guías con resolución detallada.</p>
+          <div class="topic-grid">
+            <article class="topic-card card">
+              <span class="style-chip chip-div">Divergente</span>
+              <h3>UV (México) – Factorización</h3>
+              <p>Documento con ejemplos y explicaciones paso a paso.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://www.uv.mx/ingenieriacivil/files/2014/05/2.-Factorizacion.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-asi">Asimilador</span>
+              <h3>Colegio Premium – Factorización, MCD y MCM</h3>
+              <p>Resumen procedimental con ejercicios y soluciones.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://colegiopremium.edu.pe/wp-content/uploads/2020/09/TEMA-06-DE-ALGEBRA-FACTORIZACION-MCD-MCM.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-con">Convergente</span>
+              <h3>Webcolegios – Factorización (ejercicios)</h3>
+              <p>Problemas prácticos de factorización con desarrollo.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://www.webcolegios.com/file/a8d3ec.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-aco">Acomodador</span>
+              <h3>UNED (ES) – Cuaderno de ejercicios resueltos</h3>
+              <p>Problemas graduados con soluciones completas.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://rebiun.baratz.es/OpacDiscovery/public/catalog/detail/pdf?detailId=b2FpOmNlbGVicmF0aW9uOmVzLmJhcmF0ei5yZW4vMzAwODE1OTU" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Slide 4: TEORÍA DE CONJUNTOS -->
+        <section class="topic-slide" id="conjuntos" aria-label="Teoría de Conjuntos">
+          <div class="topic-header">
+            <h3>Teoría de Conjuntos — ejercicios y apuntes</h3>
+          </div>
+          <p class="topic-sub">Textos prácticos y hojas resueltas.</p>
+          <div class="topic-grid">
+            <article class="topic-card card">
+              <span class="style-chip chip-div">Divergente</span>
+              <h3>US (Sevilla) – Curso práctico de Teoría de Conjuntos</h3>
+              <p>Libro con enfoque práctico y numerosos ejercicios.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://www.cs.us.es/~jalonso/publicaciones/2007-LibroTeoriaConjuntos.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-asi">Asimilador</span>
+              <h3>UPV – Matemática discreta: teoría y ejercicios</h3>
+              <p>Capítulos de conjuntos con ejercicios propuestos.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://gdocu.upv.es/alfresco/service/api/node/content/workspace/SpacesStore/6db0c8aa-bf56-4878-8a5f-97a5289373b8/6718.pdf?guest=true" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-con">Convergente</span>
+              <h3>BUAP – Apuntes de Matemática Discreta (Conjuntos)</h3>
+              <p>Apuntes con definiciones, propiedades y ejercicios.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://www.cs.buap.mx/~fjrobles/Conjun2.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+
+            <article class="topic-card card">
+              <span class="style-chip chip-aco">Acomodador</span>
+              <h3>UA (Antofagasta) – Guía de Conjuntos resuelta</h3>
+              <p>Guía breve con problemas típicos y solución.</p>
+              <div class="topic-actions">
+                <a class="btn block" href="https://intranetua.uantof.cl/facultades/csbasicas/matematicas/academicos/jreyes/DOCENCIA/APUNTES/MEDICINA/GU%C3%8DA%20%20DE%20CONJUNTOS%20RESUELTA.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
       </div>
-      <!-- Expresiones Algebraicas -->
-      <div class="card">
-        <h3>Expresiones Algebraicas</h3>
-        <p>"Exercises on Algebraic Expressions & Identities" – NCERT Exemplar, Clase 8.</p>
-        <a class="btn outline" href="https://ncert.nic.in/pdf/exemplarproblem/iesc108.pdf" target="_blank" rel="noopener">Descargar PDF</a>
-      </div>
-      <!-- Factorización -->
-      <div class="card">
-        <h3>Factorización</h3>
-        <p>"Worksheet: Factorising Quadratics" – mathcentre (5&nbsp;pág.).</p>
-        <a class="btn outline" href="https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-factorising1-2009-1.pdf" target="_blank" rel="noopener">Descargar PDF</a>
-      </div>
-      <!-- Teoría de Conjuntos -->
-      <div class="card">
-        <h3>Teoría de Conjuntos</h3>
-        <p>"Set Theory – Exercise Sheet" – University of Cambridge.</p>
-        <a class="btn outline" href="https://www.dpmms.cam.ac.uk/~tf/teaching/ExampleSheet1SetTheory.pdf" target="_blank" rel="noopener">Descargar PDF</a>
+
+      <!-- Controles -->
+      <div class="tc-controls" aria-label="Controles de carrusel">
+        <div class="tc-arrows">
+          <button class="tc-btn" id="tcPrev" aria-label="Anterior">‹</button>
+          <button class="tc-btn" id="tcNext" aria-label="Siguiente">›</button>
+        </div>
+        <div class="tc-dots" id="tcDots" aria-label="Paginación"></div>
       </div>
     </div>
   </section>
@@ -134,25 +280,61 @@
 
 <footer>© 2025 Universidad Cooperativa de Colombia – Ingeniería Civil</footer>
 
-<!-- Lightbox reutilizable para imágenes fuera del carrusel -->
-<script>
-function openLightbox(src){
-  const overlay=document.createElement('div');
-  overlay.style.position='fixed';overlay.style.inset='0';overlay.style.background='rgba(0,0,0,.8)';overlay.style.display='flex';overlay.style.alignItems='center';overlay.style.justifyContent='center';overlay.style.cursor='pointer';overlay.onclick=()=>overlay.remove();
-  const img=document.createElement('img');img.src=src;img.style.maxWidth='90%';img.style.maxHeight='90%';img.style.borderRadius='12px';overlay.appendChild(img);
-  document.body.appendChild(overlay);
-}
-</script>
-
-<!-- Carrusel simple -->
+<!-- ===== JS: Carrusel por temas (teclas, swipe, deep-link) ===== -->
 <script>
 (function(){
-  const carousel=document.getElementById('evidenceCarousel');
-  const slides=[...carousel.querySelectorAll('.slide')];
-  let idx=0;
-  const show=i=>{slides.forEach((s,k)=>s.classList.toggle('active',k===i));idx=i;};
-  document.querySelector('.prev').onclick=()=>show((idx-1+slides.length)%slides.length);
-  document.querySelector('.next').onclick=()=>show((idx+1)%slides.length);
+  const $c = document.getElementById('topicCarousel');
+  if(!$c) return;
+  const track = $c.querySelector('.topic-track');
+  const slides = [...$c.querySelectorAll('.topic-slide')];
+  const prev = document.getElementById('tcPrev');
+  const next = document.getElementById('tcNext');
+  const dotsWrap = document.getElementById('tcDots');
+  let idx = 0;
+
+  function renderDots(){
+    dotsWrap.innerHTML = slides.map((_,i)=>(
+      `<button class="tc-dot${i===idx?' active':''}" aria-label="Ir al tema ${i+1}"></button>`
+    )).join('');
+    [...dotsWrap.children].forEach((btn,i)=>btn.onclick=()=>go(i));
+  }
+
+  function go(i){
+    idx = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(-${idx*100}%)`;
+    renderDots();
+    // sincroniza hash para deep-link
+    const ids = slides.map(s=>s.id || '');
+    if(ids[idx]) history.replaceState(null, '', '#'+ids[idx]);
+  }
+
+  prev.onclick = ()=>go(idx-1);
+  next.onclick = ()=>go(idx+1);
+  renderDots();
+
+  // Navegación por teclado
+  $c.tabIndex = 0;
+  $c.addEventListener('keydown',(e)=>{
+    if(e.key==='ArrowLeft') go(idx-1);
+    if(e.key==='ArrowRight') go(idx+1);
+  });
+
+  // Swipe táctil
+  let startX=null;
+  track.addEventListener('pointerdown',e=>{
+    startX=e.clientX; track.setPointerCapture(e.pointerId);
+  });
+  track.addEventListener('pointerup',e=>{
+    if(startX==null) return;
+    const dx = e.clientX - startX;
+    if(dx<-30) go(idx+1); else if(dx>30) go(idx-1);
+    startX=null;
+  });
+
+  // Deep-link por hash inicial
+  const h = (location.hash||'').replace('#','');
+  const j = slides.findIndex(s=>s.id===h);
+  if(j>=0) go(j);
 })();
 </script>
 <script src="js/main.js"></script>
