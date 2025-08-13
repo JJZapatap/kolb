@@ -1,18 +1,71 @@
 // main.js
-(function(){
-  const burger=document.querySelector('#burger');
-  const menu=document.querySelector('#nav-menu');
-  if(burger){burger.addEventListener('click',()=>menu.classList.toggle('open'));}
-  if(menu){
-    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
-  }
-  const toTop=document.createElement('button');
-  toTop.className='btn outline';toTop.textContent='↑';
-  Object.assign(toTop.style,{position:'fixed',bottom:'20px',right:'20px',opacity:'0',pointerEvents:'none',transition:'opacity .3s',zIndex:9999});
-  document.body.appendChild(toTop);
-  window.addEventListener('scroll',()=>{
-    if(window.scrollY>400){toTop.style.opacity='1';toTop.style.pointerEvents='auto';}
-    else{toTop.style.opacity='0';toTop.style.pointerEvents='none';}
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ===== NAV: burger + cierre seguro =====
+  const burger = document.getElementById('burger');
+  const menu   = document.getElementById('nav-menu');
+
+  const closeMenu = () => { menu?.classList.remove('open'); burger?.setAttribute('aria-expanded','false'); };
+  const toggleMenu = () => {
+    if(!menu) return;
+    const open = !menu.classList.contains('open');
+    menu.classList.toggle('open', open);
+    burger?.setAttribute('aria-expanded', String(open));
+  };
+
+  burger?.addEventListener('click', toggleMenu);
+
+  // Cierra al hacer clic en cualquier enlace del menú
+  menu?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => closeMenu());
   });
-  toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-})();
+
+  // Cierra al hacer clic fuera del menú (en móvil)
+  document.addEventListener('click', (e) => {
+    if(!menu) return;
+    if (!menu.classList.contains('open')) return;
+    const clickInside = menu.contains(e.target) || burger?.contains(e.target);
+    if(!clickInside) closeMenu();
+  });
+
+  // Cierra si se ensancha la pantalla
+  window.addEventListener('resize', () => {
+    if(window.innerWidth > 820) closeMenu();
+  });
+
+  // ===== Helper: carrusel simple por ID (si existiera en la página) =====
+  function simpleCarousel(rootId){
+    const root = document.getElementById(rootId);
+    if(!root) return;
+    const slides = [...root.querySelectorAll('.slide')];
+    const prev = root.parentElement.querySelector('.prev');
+    const next = root.parentElement.querySelector('.next');
+    let idx = slides.findIndex(s => s.classList.contains('active'));
+    if(idx < 0) idx = 0;
+
+    const show = (i) => {
+      idx = (i + slides.length) % slides.length;
+      slides.forEach((s,k)=>s.classList.toggle('active', k===idx));
+    };
+    prev && prev.addEventListener('click', ()=>show(idx-1));
+    next && next.addEventListener('click', ()=>show(idx+1));
+
+    // swipe
+    let startX=null;
+    root.addEventListener('pointerdown', e=>{startX=e.clientX; root.setPointerCapture(e.pointerId);});
+    root.addEventListener('pointerup', e=>{
+      if(startX==null) return;
+      const dx = e.clientX - startX;
+      if(dx<-30) show(idx+1);
+      else if(dx>30) show(idx-1);
+      startX=null;
+    });
+  }
+
+  // Inicializa si existen (según página)
+  simpleCarousel('evidenceCarousel');   // evidencias.html
+  // Otros carouseles que hayas agregado podrían inicializarse igual:
+  // simpleCarousel('rubricCarousel');
+  // simpleCarousel('promptCarousel');
+
+});

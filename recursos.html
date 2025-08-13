@@ -9,7 +9,7 @@
     /* ===== Botones de tarjetas: ancho completo y tamaño uniforme ===== */
     .resource-links{
       display:grid;
-      grid-template-columns:1fr;     /* siempre en una columna */
+      grid-template-columns:1fr;
       gap:.75rem;
       margin-top:.9rem;
     }
@@ -18,7 +18,7 @@
       width:100%;
       display:block;
       text-align:center;
-      padding:.9rem 1rem;            /* mismo alto visual */
+      padding:.9rem 1rem;
       border-radius:10px;
     }
 
@@ -71,11 +71,9 @@
 <body>
 <header>
   <div class="container navbar">
-<a href="index.html" class="logo">
-  <img src="assets/Logo_UCC.svg"
-       alt="Universidad Cooperativa de Colombia"
-       onerror="this.onerror=null;this.src='assets/ucc-logo.png';">
-</a>
+    <a href="index.html" class="logo">
+      <img src="assets/Logo_UCC.svg" alt="Universidad Cooperativa de Colombia" onerror="this.onerror=null;this.src='assets/ucc-logo.png';">
+    </a>
     <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
     <nav>
       <ul id="nav-menu">
@@ -110,46 +108,46 @@
       <li>🤖 <a href="#prompts">Prompts de IA para docentes (carrusel)</a></li>
     </ul>
 
-    <!-- ===== RECURSOS POR TEMA (ES) ===== -->
+    <!-- ===== RECURSOS POR TEMA (todos abiertos y en español) ===== -->
     <h2>Recursos específicos por tema</h2>
     <div class="card-grid mt-2">
       <!-- Polinomios -->
       <div id="polinomios" class="card">
         <h3>Polinomios</h3>
-        <p>Definiciones, operaciones y ejercicios guiados en español.</p>
+        <p>Ejercicios resueltos y unidades de trabajo universitarias.</p>
         <div class="resource-links">
-          <a class="btn" href="https://www.sangakoo.com/es/temas/polinomios" target="_blank" rel="noopener">Sangakoo (ES)</a>
-          <a class="btn outline" href="https://zaguan.unizar.es/record/124037/files/texto_completo.pdf" target="_blank" rel="noopener">OCW Zaragoza (PDF)</a>
+          <a class="btn" href="https://exactas.unsj.edu.ar/wp-content/uploads/2021/09/UNIDAD3-POLINOMIOS.pdf" target="_blank" rel="noopener">UNSJ – Unidad 3: Polinomios (PDF)</a>
+          <a class="btn outline" href="https://www.mate.unlp.edu.ar/practicas/49_19_29102020132954.pdf" target="_blank" rel="noopener">UNLP – Polinomios 1 (PDF)</a>
         </div>
       </div>
 
       <!-- Expresiones algebraicas -->
       <div id="expresiones" class="card">
         <h3>Expresiones algebraicas</h3>
-        <p>Fundamentos, simplificación y equivalencias con práctica interactiva.</p>
+        <p>Talleres y apuntes con soluciones.</p>
         <div class="resource-links">
-          <a class="btn" href="https://es.khanacademy.org/math/algebra-home/algebra-foundations" target="_blank" rel="noopener">Khan Academy (ES)</a>
-          <a class="btn outline" href="https://bibliotecavirtual.unl.edu.ar:8443/bitstream/handle/11185/3377/Algebra_Elemental.pdf" target="_blank" rel="noopener">UNL (PDF)</a>
+          <a class="btn" href="https://www.uninorte.edu.co/documents/13942513/0/Taller+de+%C3%81lgebra.pdf" target="_blank" rel="noopener">Uninorte – Taller de Álgebra (PDF)</a>
+          <a class="btn outline" href="https://ocw.ehu.eus/pluginfile.php/39383/mod_resource/content/5/%C3%81lgebra%20elemental.pdf" target="_blank" rel="noopener">OCW EHU – Álgebra elemental (PDF)</a>
         </div>
       </div>
 
       <!-- Factorización -->
       <div id="factorizacion" class="card">
         <h3>Factorización</h3>
-        <p>Métodos (factor común, trinomios, Ruffini) y práctica guiada.</p>
+        <p>Métodos y problemas resueltos.</p>
         <div class="resource-links">
-          <a class="btn" href="https://es.khanacademy.org/math/algebra/x2f8bb11595b61c86:quadratics-multiplying-factoring" target="_blank" rel="noopener">Khan Academy (ES)</a>
-          <a class="btn outline" href="https://apoyo.uniandes.edu.co/images/recursos/Algebra/Polinomios/FactorizacionPolinomios.pdf" target="_blank" rel="noopener">Uniandes (PDF)</a>
+          <a class="btn" href="https://www.uv.mx/ingenieriacivil/files/2014/05/2.-Factorizacion.pdf" target="_blank" rel="noopener">UV – Factorización (PDF)</a>
+          <a class="btn outline" href="https://www.webcolegios.com/file/a8d3ec.pdf" target="_blank" rel="noopener">Webcolegios – Ejercicios resueltos (PDF)</a>
         </div>
       </div>
 
       <!-- Teoría de conjuntos -->
       <div id="conjuntos" class="card">
         <h3>Teoría de conjuntos</h3>
-        <p>Apuntes universitarios y problemas resueltos en español.</p>
+        <p>Libro/prácticas y hojas resueltas.</p>
         <div class="resource-links">
-          <a class="btn" href="https://www.juntadeandalucia.es/averroes/centros-tic/41017441/helvia/sitio/upload/conjuntos.pdf" target="_blank" rel="noopener">Univ. Sevilla (PDF)</a>
-          <a class="btn outline" href="https://www.uv.es/ivorra/Apuntes/Conjuntos%20y%20Numeros.pdf" target="_blank" rel="noopener">Univ. Valencia (PDF)</a>
+          <a class="btn" href="https://www.cs.us.es/~jalonso/publicaciones/2007-LibroTeoriaConjuntos.pdf" target="_blank" rel="noopener">US – Teoría de Conjuntos (PDF)</a>
+          <a class="btn outline" href="https://www.cs.buap.mx/~fjrobles/Conjun2.pdf" target="_blank" rel="noopener">BUAP – Apuntes con ejercicios (PDF)</a>
         </div>
       </div>
     </div>
@@ -157,7 +155,7 @@
 
   <!-- ===== RÚBRICAS (CARRUSEL) ===== -->
   <section id="rubricas" class="section container">
-    <h2>Ejemplos de rúbricas por tema</h2>
+    <h2>Rúbricas por tema</h2>
     <p class="lead">Evaluación analítica para primer semestre de Ingeniería Civil (escala 1–4). Criterios: dominio conceptual, procedimiento, aplicación y comunicación técnica.</p>
 
     <div class="rubric-carousel" id="rubricCarousel">
@@ -495,13 +493,14 @@
         <tr><th>Autor/Entidad</th><th>Año</th><th>Referencia</th></tr>
       </thead>
       <tbody>
-        <tr><td>Sangakoo</td><td>—</td><td>“Polinomios”. Disponible en: <a href="https://www.sangakoo.com/es/temas/polinomios" target="_blank" rel="noopener">sangakoo.com</a></td></tr>
-        <tr><td>Universidad de Zaragoza (OCW)</td><td>—</td><td>Apuntes de álgebra: polinomios. <a href="https://zaguan.unizar.es/record/124037/files/texto_completo.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
-        <tr><td>Khan Academy (ES)</td><td>—</td><td>Álgebra en español. <a href="https://es.khanacademy.org/math/algebra-home/algebra-foundations" target="_blank" rel="noopener">es.khanacademy.org</a></td></tr>
-        <tr><td>Universidad Nacional del Litoral</td><td>—</td><td><em>Álgebra Elemental</em>. <a href="https://bibliotecavirtual.unl.edu.ar:8443/bitstream/handle/11185/3377/Algebra_Elemental.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
-        <tr><td>Universidad de los Andes</td><td>—</td><td>“Factorización de polinomios”. <a href="https://apoyo.uniandes.edu.co/images/recursos/Algebra/Polinomios/FactorizacionPolinomios.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
-        <tr><td>Universidad de Sevilla</td><td>—</td><td>Apuntes de Teoría de Conjuntos. <a href="https://www.juntadeandalucia.es/averroes/centros-tic/41017441/helvia/sitio/upload/conjuntos.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
-        <tr><td>Universidad de Valencia</td><td>—</td><td>Conjuntos y Números. <a href="https://www.uv.es/ivorra/Apuntes/Conjuntos%20y%20Numeros.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>UNSJ</td><td>2021</td><td>Unidad 3: Polinomios. <a href="https://exactas.unsj.edu.ar/wp-content/uploads/2021/09/UNIDAD3-POLINOMIOS.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>UNLP</td><td>—</td><td>Prácticas: Polinomios 1. <a href="https://www.mate.unlp.edu.ar/practicas/49_19_29102020132954.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>Uninorte</td><td>—</td><td>Taller de Álgebra. <a href="https://www.uninorte.edu.co/documents/13942513/0/Taller+de+%C3%81lgebra.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>OCW EHU</td><td>—</td><td>Álgebra elemental. <a href="https://ocw.ehu.eus/pluginfile.php/39383/mod_resource/content/5/%C3%81lgebra%20elemental.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>UV</td><td>2014</td><td>Factorización. <a href="https://www.uv.mx/ingenieriacivil/files/2014/05/2.-Factorizacion.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>Webcolegios</td><td>—</td><td>Ejercicios de factorización. <a href="https://www.webcolegios.com/file/a8d3ec.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>US (Sevilla)</td><td>2007</td><td>Teoría de Conjuntos. <a href="https://www.cs.us.es/~jalonso/publicaciones/2007-LibroTeoriaConjuntos.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+        <tr><td>BUAP</td><td>—</td><td>Apuntes de Conjuntos. <a href="https://www.cs.buap.mx/~fjrobles/Conjun2.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
       </tbody>
     </table>
   </section>
@@ -535,12 +534,11 @@ document.addEventListener('DOMContentLoaded', () => {
       track.style.transform = `translateX(-${idx*100}%)`;
       renderDots();
     }
-    // Controles
     if(prev) prev.onclick = ()=>go(idx-1);
     if(next) next.onclick = ()=>go(idx+1);
     renderDots();
 
-    // Swipe: touch + mouse (fallback universal)
+    // Swipe universal (mouse/touch)
     let startX=null;
     const start = e => { startX = (e.touches? e.touches[0].clientX : e.clientX); };
     const end   = e => {
@@ -559,12 +557,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return {go};
   }
 
-  // ===== Carrusel de RÚBRICAS =====
-  const rubric = makeCarousel(
-    'rubricCarousel', '.rubric-track', '.rubric-slide', 'rcPrev', 'rcNext', 'rcDots'
-  );
-
-  // Botón "Copiar rúbrica"
+  // Carrusel de RÚBRICAS
+  const rubric = makeCarousel('rubricCarousel', '.rubric-track', '.rubric-slide', 'rcPrev', 'rcNext', 'rcDots');
+  // Copiar tabla
   document.querySelectorAll('.rubric-copy').forEach(btn=>{
     btn.addEventListener('click',()=>{
       const sel = btn.getAttribute('data-copy-src');
@@ -577,21 +572,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-
-  // Deep link a slide de rúbricas
+  // Deep link a rúbricas
   const mapR = { 'rubricas-polinomios':0, 'rubricas-expresiones':1, 'rubricas-factorizacion':2, 'rubricas-conjuntos':3 };
   const hR = location.hash.replace('#','');
   if(mapR[hR] !== undefined && rubric) rubric.go(mapR[hR]);
 
-  // ===== Carrusel de PROMPTS =====
-  const prompts = makeCarousel(
-    'promptCarousel', '.prompt-track', '.prompt-slide', 'pcPrev', 'pcNext', 'pcDots'
-  );
+  // Carrusel de PROMPTS
+  const prompts = makeCarousel('promptCarousel', '.prompt-track', '.prompt-slide', 'pcPrev', 'pcNext', 'pcDots');
 
   // Copiar prompts
   document.querySelectorAll('.copy-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
-      const id   = btn.getAttribute('data-target');
+      const id = btn.getAttribute('data-target');
       const list = document.getElementById(id);
       if(!list) return;
       const text = [...list.querySelectorAll('li')].map(li=>li.innerText).join('\n');
@@ -602,17 +594,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Deep link a slide de prompts
+  // Deep link a prompts
   const mapP = { 'prompts-factorizacion':0, 'prompts-polinomios':1, 'prompts-conjuntos':2, 'prompts-expresiones':3 };
   const hP = location.hash.replace('#','');
   if(mapP[hP] !== undefined && prompts) prompts.go(mapP[hP]);
-
 });
 </script>
 <script src="js/main.js"></script>
-
 </body>
 </html>
-
-
-
