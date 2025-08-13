@@ -6,7 +6,7 @@
   --mid-gray:#666;
   --light-gray:#f5f7fa;
   --white:#fff;
-  --ucc-blue:#00ACC9;              /* añadido para acentos 3498db */ 00ACC9
+  --ucc-blue:#00ACC9;              /* añadido para acentos 3498db */ 
   --max-width:1200px;
   --radius:12px;
   --transition:.25s ease;
@@ -142,5 +142,6 @@ footer{background:var(--dark-gray);color:var(--white);padding:2rem 1rem;text-ali
 .style-card h3{color:var(--ucc-green-dark);margin:0 0 .5rem 0;font-size:1.15rem;}
 .style-card p{color:var(--mid-gray);font-size:.95rem;margin:0 0 1rem 0;}
 .style-btn{margin-top:auto;align-self:stretch;font-size:.9rem;padding:.6rem 1rem}
+
 
 
