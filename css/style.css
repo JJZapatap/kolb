@@ -81,7 +81,7 @@ nav li a.active,nav li a:hover{color:var(--ucc-green-dark);border-bottom-color:v
   display:inline-block;background:var(--ucc-blue);color:#fff;padding:.8rem 1.4rem;border-radius:var(--radius);
   font-weight:600;transition:var(--transition);border:none;cursor:pointer;text-align:center;
 }
-.btn:hover{background:#00ACC9;text-decoration:none;}
+.btn:hover{background:#008BA3;text-decoration:none;}
 .btn.outline{background:transparent;color:var(--ucc-blue);border:2px solid var(--ucc-blue);}
 .btn.block{display:block;width:100%;}
 .card .btn{width:100%;} /* para que en tarjetas se vean iguales */
@@ -142,6 +142,7 @@ footer{background:var(--dark-gray);color:var(--white);padding:2rem 1rem;text-ali
 .style-card h3{color:var(--ucc-green-dark);margin:0 0 .5rem 0;font-size:1.15rem;}
 .style-card p{color:var(--mid-gray);font-size:.95rem;margin:0 0 1rem 0;}
 .style-btn{margin-top:auto;align-self:stretch;font-size:.9rem;padding:.6rem 1rem}
+
 
 
 
